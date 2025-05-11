@@ -13,6 +13,12 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+
+
+        {{--  aos  --}}
+
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -31,10 +37,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            animation: gradientMove 15s infinite ease infinite;
         }
 
         .mainform {
-            width: 700px;
+            width: 900px;
+            height: 500px;
             background: white;
             border-radius: 20px;
             display: flex;
@@ -46,12 +54,12 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            padding: 0 20px;
+            padding: 50px 50px;
             margin-bottom: -70px;
         }
 
         .people {
-            width: 300px;
+            width: 400px;
             margin-bottom: -50px;
         }
 
@@ -74,11 +82,12 @@
         }
 
         .rightform h1 {
-            margin-bottom: 40px;
+            margin-bottom: 80px;
         }
 
         .rightform input {
-            padding: 5px 10px;
+            width: 250px;
+            padding: 10px 10px;
             margin-bottom: 15px;
             border: 1px solid #000000;
             border-radius: 8px;
@@ -87,7 +96,7 @@
 
         .rightform button {
             color: white;
-            padding: 5px 5px;
+            padding: 10px 10px;
             background-color: #2b2b2b;
             border: none;
             width: 220px;
@@ -133,40 +142,61 @@
             margin-bottom: -1px;
             margin-right: 5px;
         }
+
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
     </style>
 
     <div class="mainform">
-        <div class="leftform">
-            <img src="{{ asset('assets/form/logo.png') }}" alt="Logo" class="logo">
-            <img src="{{ asset('assets/form/people.png') }}" alt="People" class="people">
+        <div class="leftform" >
+            <img src="{{ asset('assets/form/logo.png') }}" alt="Logo" class="logo" data-aos="fade-right" data-aos-duration="1500">
+            <img src="{{ asset('assets/form/people.png') }}" alt="People" class="people" data-aos="fade-right" data-aos-duration="1400">
         </div>
 
         <div class="rightform">
-            <h1>Masuk Akun Bukoo</h1>
+            <h1 data-aos="fade-left" data-aos-duration="1500">Masuk Akun Bukoo</h1>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
-                <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" required />
-                <input type="password" name="password" placeholder="Password" required />
-                <button type="submit">Masuk</button>
+                <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" required data-aos="fade-left" data-aos-duration="1500" />
+                <input type="password" name="password" placeholder="Password" required data-aos="fade-left" data-aos-duration="1600"/>
+                <button type="submit" data-aos="fade-left" data-aos-duration="1500">Masuk</button >
+{{--
+                <p style="margin-top: 10px;" data-aos="fade-left" data-aos-duration="1500">Atau</p>
 
-                <p style="margin-top: 10px;">Atau</p>
-
-                <div class="googlelog">
+                <div class="googlelog" data-aos="fade-left" data-aos-duration="1500">
                     <a href="/auth/google" class="google-login-btn">
                         <img src="{{ asset('assets/form/google.png') }}" alt="Google" width="10px">
                         Masuk dengan Google
                     </a>
-                </div>
+                </div>  --}}
             </form>
 
             <small>
-                <a href="{{ route('register') }}" style="text-decoration: none;">
+                <a href="{{ route('register') }}" style="text-decoration: none;" data-aos="fade " data-aos-duration="1500">
                     Belum Punya Akun? Daftar
                 </a>
             </small>
         </div>
     </div>
+
+
+
+ {{--  aos   --}}
+ <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 
 </body>
 

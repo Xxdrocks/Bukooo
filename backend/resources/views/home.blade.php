@@ -25,12 +25,14 @@
             padding: 0;
             box-sizing: border-box;
             scroll-behavior: smooth;
+            scrollbar-width: none;
         }
 
         body {
             font-family: "Poppins", sans-serif;
-            height: ;
+            overflow-x: hidden;
         }
+
 
 
 
@@ -44,6 +46,8 @@
             color: white;
             position: relative;
             overflow: hidden;
+            padding-top: 20px;
+
 
         }
 
@@ -58,8 +62,8 @@
         }
 
         .home-h1 {
-            text-shadow: rgba(255,255,255,1) 0px 0px 45px;
-            padding-top: 70px;
+            text-shadow: rgba(255, 255, 255, 1) 0px 0px 45px;
+            padding-top: 90px;
         }
 
         .iklan {
@@ -114,8 +118,10 @@
         }
 
         .product {
+            box-shadow: -2px 7px 25px 0px rgba(0, 0, 0, 0.33);
+            -webkit-box-shadow: -2px 7px 25px 0px rgba(0, 0, 0, 0.33);
+            -moz-box-shadow: -2px 7px 25px 0px rgba(0, 0, 0, 0.33);
             height: 400px;
-            border: 0.5px solid #000000;
             border-radius: 10px;
             width: 180px;
             position: relative;
@@ -282,6 +288,7 @@
 
 
     @include('components.nav')
+    @include('components.cursor')
 
     <div class="main-home">
         <div class="home-h1" id="scrollText">
@@ -327,9 +334,9 @@
         <div class="book-grid">
 
             <!-- 1 -->
-            <div class="product">
+            <div class="product" data-aos="slide-right" data-aos-offset="50" data-aos-duration="1000">
                 <img class="book-image" src="assets/product/loving.png" alt="Loving The Wounded Soul">
-                <a href="/beli/1">
+                <a href="/product/1">
                     <div class="productcontent">
                         <img class="new-label" src="assets/product/new.png" alt="New">
                         <p class="book-title">Loving The Wounded Soul</p>
@@ -341,7 +348,7 @@
             </div>
 
             <!-- 2 -->
-            <div class="product">
+            <div class="product" data-aos="slide-right" data-aos-offset="50" data-aos-duration="1400">
                 <img class="book-image" src="assets/product/sianak.png" alt="Aku Anak Pintar">
                 <a href="/beli/2">
                     <div class="productcontent">
@@ -356,12 +363,12 @@
             </div>
 
             <!-- 3 -->
-            <div class="product">
+            <div class="product" data-aos="slide-left" data-aos-offset="50" data-aos-duration="1400">
                 <img class="book-image" src="assets/product/caraberpikir.png" alt="99 Cara Bersyukur Ala Khadijah">
                 <a href="/beli/3">
                     <div class="productcontent">
                         <img class="new-label" src="assets/product/new.png" alt="New">
-                        <p class="book-title">99 Cara Bersyukur Ala Sherelock Holmes</p>
+                        <p class="book-title">99 Cara Berpikir Ala Sherelock Holmes</p>
                         <p class="book-price">Rp 99.000,00</p>
                         <img class="heart-icon" src="assets/product/heart.png" alt="Favorite">
                     </div>
@@ -370,7 +377,7 @@
             </div>
 
             <!-- 4 -->
-            <div class="product">
+            <div class="product" data-aos="slide-left" data-aos-offset="50" data-aos-duration="1000">
                 <img class="book-image" src="assets/product/andaisel.png" alt="Anda Selalu Dalam Tuhanmu">
                 <a href="/beli/4">
                     <div class="productcontent">
@@ -384,7 +391,8 @@
             </div>
 
             <!-- 5 -->
-            <div class="product">
+            <div class="product" data-aos="slide-right" data-aos="fade-left" data-aos-offset="50"
+                data-aos-duration="1000">
                 <img class="book-image" src="assets/product/seperti.png" alt="Serpihan Dendam">
                 <a href="/beli/5">
                     <div class="productcontent">
@@ -398,7 +406,8 @@
             </div>
 
             <!-- 6 -->
-            <div class="product">
+            <div class="product" data-aos="slide-right" data-aos="fade-left" data-aos-offset="50"
+                data-aos-duration="1400">
                 <img class="book-image" src="assets/product/malam.png" alt="Makem Terakhir">
                 <a href="/beli/6">
                     <div class="productcontent">
@@ -414,7 +423,7 @@
             </div>
 
             <!-- 7 -->
-            <div class="product">
+            <div class="product" data-aos="slide-left" data-aos-offset="50" data-aos-duration="1400">
                 <img class="book-image" src="assets/product/ego.png" alt="Ego Is The Enemy">
                 <a href="/beli/7">
                     <div class="productcontent">
@@ -429,19 +438,17 @@
             </div>
 
             <!-- 8 -->
-            <div class="product">
-                <img class="book-image" src="assets/product/daun.png"
-                <a href="/beli/8">
-                        alt="Daun Yang Jatuh Tak Pernah Membenci Angin">
-                    <div class="productcontent">
-                        <img class="new-label" src="assets/product/new.png" alt="New">
-                        <p class="book-title">
-                            Daun Yang Jatuh
+            <div class="product" data-aos="slide-left" data-aos-offset="50" data-aos-duration="1000">
+                <img class="book-image" src="assets/product/daun.png" <a href="/beli/8">
+                <div class="productcontent">
+                    <img class="new-label" src="assets/product/new.png" alt="New">
+                    <p class="book-title">
+                        Daun Yang Jatuh
 
-                        </p>
-                        <p class="book-price">Rp 99.000,00</p>
-                        <img class="heart-icon" src="assets/product/heart.png" alt="Favorite">
-                    </div>
+                    </p>
+                    <p class="book-price">Rp 99.000,00</p>
+                    <img class="heart-icon" src="assets/product/heart.png" alt="Favorite">
+                </div>
                 </a>
                 <img class="heart-icon like-btn" src="assets/product/heart.png" alt="Favorite">
             </div>
@@ -452,7 +459,7 @@
 
 
 
-    <center data-aos="fade-down" data-aos-duration="1000">
+    <center data-aos="slide-down" data-aos-duration="1000" data-aos-offset="50">
         <h1 style="margin: 50px 0px">
             Did You Know
         </h1>
@@ -461,17 +468,17 @@
     <div class="article">
 
 
-        <img src=" {{ asset('assets/article/article.png') }}" alt="" data-aos="fade-right"
+        <img src=" {{ asset('assets/article/article.png') }}" alt="" data-aos="slide-right" data-aos-offset="50"
             data-aos-duration="1000">
 
         <div class="articlecontent">
-            <p data-aos="fade-left" data-aos-duration="1000">
+            <p data-aos="slide-left" data-aos-duration="1000" data-aos-offset="50">
                 Membaca buku adalah kegiatan yang sangat bermanfaat, baik untuk menambah pengetahuan, meningkatkan
                 kemampuan berpikir, maupun untuk menenangkan pikiran. Buku merupakan jendela dunia yang dapat membawa
                 kita ke berbagai tempat dan pengalaman baru.
 
             </p>
-            <button data-aos="fade-up" data-aos-duration="1000">
+            <button data-aos="slide-up" data-aos-duration="1000" data-aos-offset="50">
                 Lets Read a Book
             </button>
 
@@ -525,8 +532,8 @@
         {{--  heart icon animation  --}}
         document.querySelectorAll('.like-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
-                e.stopPropagation(); // mencegah bubbling ke <a>
-                e.preventDefault(); // mencegah redirect
+                e.stopPropagation();
+                e.preventDefault();
 
                 const isLiked = btn.classList.toggle('liked');
                 btn.src = isLiked ?

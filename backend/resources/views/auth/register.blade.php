@@ -31,7 +31,7 @@
         }
 
         .mainform {
-            width: 700px;
+            width: 900px;
             background: white;
             border-radius: 20px;
             display: flex;
@@ -48,7 +48,7 @@
         }
 
         .people {
-            width: 300px;
+            width: 400px;
             margin-bottom: -50px;
         }
 
@@ -75,7 +75,8 @@
         }
 
         .rightform input {
-            padding: 5px 10px;
+            width: 250px;
+            padding: 10px 10px;
             margin-bottom: 10px;
             border: 1px solid #000000;
             border-radius: 8px;
@@ -85,7 +86,7 @@
 
         .rightform button {
             color: white;
-            padding: 5px 5px;
+            padding: 10px 10px;
             background-color: #2b2b2b;
             border: none;
             width: 220px;
@@ -181,14 +182,14 @@
 
                 <button type="submit">Daftar</button>
 
-                <p style="margin-top: 10px;">Atau</p>
+                {{--  <p style="margin-top: 10px;">Atau</p>
 
                 <div class="googlelog">
                     <a href="/auth/google">
                         <img src="{{ asset('assets/form/google.png') }}" alt="Google" width="10px">
                         Daftar dengan Google
                     </a>
-                </div>
+                </div>  --}}
             </form>
 
             <small>

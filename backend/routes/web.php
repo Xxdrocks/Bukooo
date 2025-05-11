@@ -5,6 +5,11 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyBooksController;
+use App\Http\Controllers\ProductController;
+
+Route::resource('products', ProductController::class);
+Route::get('product', [ProductController::class, 'index'])->name('product');
+Route::get('/product/{id}', [ProductController::class,'show'])->name('product.show');
 
 
 Route::get('/', function () {
@@ -30,8 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
 Route::get('/mybooks', [MyBooksController::class, 'index'])->middleware('auth');
 Route::get('/mybooks', [MyBooksController::class, 'myBooks'])->name('mybooks')->middleware('auth');
-
 
 require __DIR__.'/auth.php';

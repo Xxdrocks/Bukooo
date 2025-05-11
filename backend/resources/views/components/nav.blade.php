@@ -1,14 +1,27 @@
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
+
+</head>
 
 <nav>
     <style>
         nav {
-            position: relative;
+            font-family: "Poppins", sans-serif;
+            top: 0;
+            right: 0;
+            left: 0;
+            position: fixed;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 5px 30px;
             background-color: white;
+            z-index: 15;
         }
 
 
@@ -91,7 +104,7 @@
         }
 
         .sidebar a:hover {
-            text-shadow: rgba(0,238,255,0.9) 0px 0px 39px;
+            text-shadow: rgba(0, 238, 255, 0.9) 0px 0px 39px;
         }
 
         .sidebar h3 {
@@ -121,7 +134,6 @@
         .sidebar.show {
             right: 0;
         }
-
     </style>
 
     <div class="nav-left">
@@ -129,9 +141,9 @@
     </div>
 
     <div class="nav-center">
-        <a href="{{ route ('home') }}" class="active">Home</a>
-        <a href="#shop">Shop</a>
-        <a href="{{ route ('mybooks') }}">My Books</a>
+        <a href="{{ route('home') }}" class="active">Home</a>
+        <a href="{{ route('product') }}">Shop</a>
+        <a href="{{ route('mybooks') }}">My Books</a>
 
         @auth
 
@@ -168,5 +180,3 @@
 
 
 </nav>
-
-

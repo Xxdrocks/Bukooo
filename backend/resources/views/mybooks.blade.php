@@ -28,6 +28,7 @@
         }
 
             .bookshelf-container {
+                margin-top: 100px;
                 position: relative;
                 width: 700px;
                 margin: 0 auto;
@@ -59,7 +60,7 @@
         }
 
         h1 {
-            margin-top: 20px;
+            margin-top: 160px;
         }
     </style>
 </head>
