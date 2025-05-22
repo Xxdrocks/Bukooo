@@ -13,8 +13,9 @@ use App\Models\Product;
 use GuzzleHttp\Middleware;
 
 Route::resource('products', ProductController::class);
-Route::get('product', [ProductController::class, 'index'])->name('product');
+Route::get('/product', [ProductController::class, 'index'])->name('product');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
+// Route::get('/product', [ProductController::class, 'index'])->name('product');
 
 
 // Route::get('/', function () {
@@ -39,7 +40,7 @@ Route::get('/login', [AuthenticatedSessionController::class, 'create'])
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/information', [ProfileController::class,'index'])->name('profile')->middleware('auth');
+    Route::get('/information', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -49,8 +50,10 @@ Route::middleware('auth')->group(function () {
 
 Route::post('/wishlist/toggle', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
 
-Route::get('/mybooks', [MyBooksController::class, 'index'])->middleware('auth');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/mybooks', [MyBooksController::class, 'index'])->name('mybooks');
+});
 
 
 Route::get('/addProduct/create', [ProductController::class, 'create'])->name('products.create');
@@ -80,11 +83,11 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/payment/create', [PaymentController::class, 'create'])->name('payment.detail');
     Route::post('/payment', [PaymentController::class, 'store'])->name('payment.store');
+    Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');
 });
 
 
 
-Route::get('/product', [ProductController::class, 'index'])->name('product');
 
 
 require __DIR__ . '/auth.php';

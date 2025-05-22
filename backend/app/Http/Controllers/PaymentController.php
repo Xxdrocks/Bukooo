@@ -15,9 +15,8 @@ class PaymentController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $payments = $user->payments()->with('product')->get();
 
-        // Ambil semua payment user beserta data pro duk-nya
-        $payments = $user->payments->with('product')->get();
 
         return view('payment.index', compact('payments'));
     }
@@ -62,7 +61,7 @@ class PaymentController extends Controller
 
         $payment->save();
 
-        return redirect()->route('payment.index')->with('success', 'anda berhasil melakukan pembayaran');
+        return redirect()->route('product')->with('success', 'anda berhasil melakukan pembayaran');
     }
 
     /**
