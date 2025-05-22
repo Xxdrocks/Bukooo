@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
+use App\Models\User;
 
 class ProductController extends Controller
 {
@@ -19,10 +20,9 @@ class ProductController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('product.create');
+        */
+    public function create(){
+        return view("addProduct.create");
     }
 
     /**
@@ -30,25 +30,31 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validate = $request->validate([
             'name' => 'required',
-            'category' => 'required',
+            'category' => 'required|max:255',
             'image' => 'required|mimes:png,jpg,jpeg',
             'price' => 'required',
             'created_by' => 'required'
         ]);
 
 
+
+        if (!$validate) {
+            dd($request->all());
+        }
+
+
         $file = $request->file('image')->store('product', 'public');
         Product::create([
             'name' => $request->name,
-            'category' => $request,
+            'category' => $request->category,
             'image' => $file,
-            'price' => $request,
-            'created_by' => $request
+            'price' => $request->price,
+            'created_by' => $request->created_by
         ]);
 
-        return redirect()->route('product')->with('success', 'product berhasil ditambahkan');
+        return redirect()->route('product', 'home')->with('success', 'product berhasil ditambahkan');
     }
 
     /**
@@ -112,4 +118,10 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('home');
     }
+
+    public function home()
+{
+    $products = Product::all();
+    return view('home', compact('products'));
+}
 }

@@ -13,8 +13,19 @@ class Product extends Model
         "name",
         "category",
         "image",
-        "description",
         "price",
         "created_by"
     ];
+
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 }

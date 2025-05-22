@@ -3,32 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Payment;
-use App\Models\Product;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
-class MyBooksController extends Controller
+class WishlistController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // Get the authenticated user
-        $user = Auth::user();
-
-        // Fetch all payments made by the user
-        $payments = Payment::where('user_id', $user->id)
-            ->where('status', 'paid') // Assuming 'status' indicates payment status
-            ->get();
-
-        // Retrieve the products associated with these payments
-        $products = Product::whereIn('id', $payments->pluck('product_id'))->get();
-
-        // Pass the products to the view
-        return view('mybooks.index', compact('products'));
-
+        //
     }
 
     /**

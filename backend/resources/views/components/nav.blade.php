@@ -11,6 +11,8 @@
 <nav>
     <style>
         nav {
+            margin: 0;
+            padding: ;
             font-family: "Poppins", sans-serif;
             top: 0;
             right: 0;
@@ -22,6 +24,7 @@
             padding: 5px 30px;
             background-color: white;
             z-index: 15;
+            overflow-x: hidden;
         }
 
 
@@ -104,8 +107,16 @@
         }
 
         .sidebar a:hover {
-            text-shadow: rgba(0, 238, 255, 0.9) 0px 0px 39px;
+            background: rgb(53, 53, 53);
+            color: white;
+            border-radius: 5px;
         }
+        .sidebar p:hover {
+            background: rgb(53, 53, 53);
+            color: white;
+            border-radius: 5px;
+        }
+
 
         .sidebar h3 {
             font-size: 15px;
@@ -134,6 +145,10 @@
         .sidebar.show {
             right: 0;
         }
+
+        .addproduct a {
+            margin-top: 20px;
+        }
     </style>
 
     <div class="nav-left">
@@ -144,14 +159,8 @@
         <a href="{{ route('home') }}" class="active">Home</a>
         <a href="{{ route('product') }}">Shop</a>
         <a href="{{ route('mybooks') }}">My Books</a>
-
         @auth
-
-
-
         @endauth
-
-
         <a href="#contact">Contact</a>
     </div>
 
@@ -165,8 +174,10 @@
     <div id="sidebar" class="sidebar">
         @auth
             <h3>Curently in</h3>
-            <p>{{ Auth::user()->name }}</p>
-            <p style="font-size: 10px">{{ Auth::user()->email }}</p>
+            <a href="{{ route('profile') }}">
+                <p>{{ Auth::user()->name }} </p>
+                <p style="font-size: 10px">{{ Auth::user()->email }}</p>
+            </a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit">Logout</button>
@@ -176,7 +187,35 @@
             <a href="{{ route('login') }}" class="text-blue-500">Login</a> |
             <a href="{{ route('register') }}" class="text-blue-500">Register</a>
         @endauth
+
+
+        <div class="addproduct">
+            @auth
+                @if (auth()->user()->role === 'user')
+                    <a href="{{ route('become-seller') }}">Jadi Seller</a>
+                @elseif(in_array(auth()->user()->role, ['admin', 'superadmin']))
+                    <a href="{{ route('products.create') }}">Add Product</a>
+                @endif
+            @endauth
+        </div>
     </div>
+
+    <script>
+        const accountBtn = document.getElementById('accountBtn');
+        const sidebar = document.getElementById('sidebar');
+
+        accountBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('hidden');
+            sidebar.classList.toggle('show');
+        });
+
+        window.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !accountBtn.contains(e.target)) {
+                sidebar.classList.add('hidden');
+                sidebar.classList.remove('show');
+            }
+        });
+    </script>
 
 
 </nav>
