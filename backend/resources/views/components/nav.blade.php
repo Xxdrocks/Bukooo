@@ -111,6 +111,7 @@
             color: white;
             border-radius: 5px;
         }
+
         .sidebar p:hover {
             background: rgb(53, 53, 53);
             color: white;
@@ -191,10 +192,16 @@
 
         <div class="addproduct">
             @auth
-                @if (auth()->user()->role === 'user')
+                @php
+                    $user = auth()->user();
+                @endphp
+
+                @if ($user->getAttribute('role') === 'user')
                     <a href="{{ route('become-seller') }}">Jadi Seller</a>
-                @elseif(in_array(auth()->user()->role, ['admin', 'superadmin']))
+                @elseif (in_array($user->getAttribute('role'), ['seller']))
                     <a href="{{ route('products.create') }}">Add Product</a>
+                @elseif (in_array($user->getAttribute('role'), ['superadmin']))
+                    <a href="{{ route('admin.dashboard') }}">Dashboard Superadmin</a>
                 @endif
             @endauth
         </div>

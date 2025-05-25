@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>My Account</title>
@@ -60,7 +61,8 @@
             font-size: 12px;
         }
 
-        .favorite-box, .wishlist-box {
+        .favorite-box,
+        .wishlist-box {
             border-radius: 10px;
             padding: 10px 20px 20px;
             background: #fff;
@@ -98,6 +100,8 @@
             border-radius: 10px;
             border: 1px solid #ddd;
             max-width: 700px;
+            max-height: 200px;
+
         }
 
         .payment-history h3 {
@@ -117,6 +121,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <h2 class="title">My Account</h2>
@@ -160,9 +165,9 @@
         @forelse($user->payments as $payment)
             <div>
                 <strong>Order ID:</strong> {{ $payment->order_id }}<br>
-                <strong>Jumlah:</strong> Rp{{ number_format($payment->amount, 0, ',', '.') }}<br>
+                <strong>Jumlah:</strong> Rp{{ number_format($payment->price, 0, ',', '.') }}<br>
                 <strong>Status:</strong> {{ $payment->status }}<br>
-                <strong>Dibayar pada:</strong> {{ $payment->paid_at ? $payment->paid_at->format('d M Y') : '-' }}
+                <p>Tanggal Bayar: {{ $payment->paid_at_formatted }}</p>
             </div>
             <hr>
         @empty
@@ -171,4 +176,5 @@
     </div>
 
 </body>
+
 </html>

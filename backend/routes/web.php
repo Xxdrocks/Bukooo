@@ -9,23 +9,46 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\AdminController;
 use App\Models\Product;
-use GuzzleHttp\Middleware;
+
+
+
+
+
+Route::middleware(['auth'])->prefix('superadmin')->group(function () {
+     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+
+    // USER
+    Route::get('/users', [AdminController::class, 'getAllUsers'])->name('user.index');
+    Route::get('/users/create', [AdminController::class, 'createUser'])->name('user.create');
+    Route::post('/users/create', [AdminController::class, 'storeUser'])->name('user.add');
+    Route::get('/users/{id}/edit', [AdminController::class,'editUser'])->name('user.edit');
+    Route::post('/users/{id}/update', [AdminController::class, 'updateUser'])->name('user.update');
+    Route::delete('/users/{id}', [AdminController::class, 'destroyUser'])->name('user.delete');
+
+    // PRODUCT
+
+    Route::get('/products', [AdminController::class, 'getAllProducts'])->name('product.index');
+    Route::get('/products/create', [AdminController::class,'createProduct'])->name('product.create');
+    Route::post('/products/create', [AdminController::class, 'storeProduct'])->name('product.add');
+    Route::get('/products/{id}/edit', [AdminController::class, 'editProduct'])->name('product.edit');
+    Route::post('/products/{id}/update', [AdminController::class, 'updateProduct'])->name('product.update');
+    Route::delete('/products/{id}', [AdminController::class, 'destroyProduct'])->name('product.delete');
+
+    // PAYMENT
+    Route::get('/payments', [AdminController::class, 'getAllPayments'])->name('payments.index');
+    Route::get('/payments/create', [AdminController::class,'createPayment'])->name('payments.add');
+    Route::post('/payments/create', [AdminController::class, 'storePayment'])->name('payments.edit');
+    Route::put('/payments/{id}', [AdminController::class, 'updatePayment']);
+    Route::delete('/payments/{id}', [AdminController::class, 'destroyPayment'])->name('payments.delete');
+});
+
 
 Route::resource('products', ProductController::class);
 Route::get('/product', [ProductController::class, 'index'])->name('product');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
-// Route::get('/product', [ProductController::class, 'index'])->name('product');
 
-
-// Route::get('/', function () {
-//     return view('home');
-// });
-
-
-// Route::get('/dashboard', function () {
-//     return view('home');
-// })->middleware(['auth'])->name('home');
 
 Route::get('/', function () {
     $products = Product::all();
@@ -81,9 +104,9 @@ Route::middleware('auth')->group(function () {
 
 // Payment
 Route::middleware('auth')->group(function () {
-    Route::get('/payment/create', [PaymentController::class, 'create'])->name('payment.detail');
-    Route::post('/payment', [PaymentController::class, 'store'])->name('payment.store');
-    Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');
+    Route::get('/checkout/create', [PaymentController::class, 'create'])->name( 'payment.detail');
+    Route::post('/checkout', [PaymentController::class, 'prosess'])->name('payment.prosess');
+    Route::get('/checkout/{payment}', [PaymentController::class, 'checkout'])->name('checkout');
 });
 
 

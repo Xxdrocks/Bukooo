@@ -43,9 +43,10 @@ class ProfileController extends Controller
             'email' => 'required|email|unique:users,email,' . $user->id,
         ]);
 
+        $user = User::find($name = $request->name);
+
         $user->name = $request->name;
         $user->email = $request->email;
-
         $user->save();
 
 

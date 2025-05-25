@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 
 class SellerController extends Controller
 {
+
     public function create()
     {
         return view('seller.become'); // form untuk isi data seller
@@ -26,7 +27,7 @@ class SellerController extends Controller
 
         $user = Auth::user();
 
-        // simpan data seller
+
         SellerProfile::create([
             'user_id' => $user->id,
             'store_name' => $request->store_name,
@@ -34,8 +35,8 @@ class SellerController extends Controller
             'phone_number' => $request->phone_number,
         ]);
 
-
-        $user->role = 'admin';
+        $user = new SellerProfile();
+        $user->role = 'seller';
         $user->save();
 
         return redirect('/')->with('success', 'Sekarang kamu adalah seller!');

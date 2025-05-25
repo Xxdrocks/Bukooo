@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('payment_method');
+            $table->unsignedBigInteger('gross_amount');
+            $table->integer('price');
+            $table->string('snap_token')->nullable();
+            $table->string('user_id');
+            $table->string('payment_method')->nullable()->default(null)->change();
             $table->enum('status', ['pending', 'paid', 'failed']);
             $table->timestamp('paid_at')->nullable();
             $table->timestamps();

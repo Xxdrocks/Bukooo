@@ -149,7 +149,7 @@
 
 
     <section class="product-section">
-        <div class="product-grid" data-aos="slide-down" data-aos-duration="1500">
+        <div class="product-grid" >
             @foreach ($products as $product)
                 <form action="{{ route('payment.detail') }}" method="GET" class="product-card"
                     onclick="this.submit()">

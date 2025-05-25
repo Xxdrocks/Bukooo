@@ -15,6 +15,9 @@ use App\Models\Payment;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
+    // public $id;
+    // public $name;
+    // public $email;
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
