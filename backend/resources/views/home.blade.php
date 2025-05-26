@@ -143,7 +143,7 @@
             margin-left: 70px;
             pointer-events: none;
             position: absolute;
-            animation: waveParallax 10s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+            animation: waveParallax 9s cubic-bezier(0.65, 0, 0.35, 1) infinite;
         }
 
         .waves {
@@ -583,7 +583,7 @@
                     kita ke berbagai tempat dan pengalaman baru.
 
                 </p>
-                <button data-aos="slide-up" data-aos-duration="1000" data-aos-offset="50">
+                <button data-aos="slide-up" data-aos-duration="1000" data-aos-offset="50"     onclick="window.location.href='{{ route('product') }}'">
                     Lets Read a Book
                 </button>
 

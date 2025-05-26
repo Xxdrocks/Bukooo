@@ -3,91 +3,114 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Admin Panel - Module Manager</title>
+    <title>Admin Panel - Product Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Poppins', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             background-color: #f4f4f4;
             color: #333;
         }
 
-         .container {
+        .container {
             display: flex;
             height: 100vh;
         }
 
-
         .main-content {
             flex: 1;
-            padding: 20px;
+            padding: 30px;
             background-color: #fff;
+            overflow-y: auto;
         }
 
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 25px;
         }
 
+        .header h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
 
-        .add-button {
-            padding: 10px 20px;
+        .btn-primary {
+            padding: 10px 18px;
             background-color: #4e73df;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
+            font-size: 14px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
-        .add-button:hover {
-            background-color: #2e59d9;
+        .btn-primary:hover {
+            background-color: #3759c4;
         }
 
         .table-container {
-            width: 920px;
+            max-width: 100%;
             max-height: 520px;
             overflow-y: auto;
             overflow-x: auto;
             border: 1px solid #ddd;
-            scrollbar-width: none;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            min-width: 800px;
         }
 
         th,
         td {
-            padding: 12px 15px;
+            padding: 14px 16px;
             text-align: left;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #eee;
         }
 
         th {
             background-color: #f8f9fc;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 14px;
         }
 
-        .btn-primary {
-            background-color: #007bff;
-            color: white;
+        td {
+            font-size: 14px;
+            color: #444;
+        }
+
+        td img {
+            width: 60px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+
+        .edit-btn,
+        .delete-btn {
+            padding: 6px 12px;
+            font-size: 13px;
             border: none;
-            padding: 5px;
+            border-radius: 5px;
             cursor: pointer;
-            border-radius: 4px;
         }
 
         .edit-btn {
             background-color: #1cc88a;
             color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            cursor: pointer;
         }
 
         .edit-btn:hover {
@@ -97,10 +120,6 @@
         .delete-btn {
             background-color: #e74a3b;
             color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            cursor: pointer;
         }
 
         .delete-btn:hover {
@@ -110,20 +129,14 @@
 </head>
 
 <body>
-
     <div class="container">
-        <!-- Sidebar -->
-
         @include('components.admin-nav')
-        <!-- Main Content -->
-
 
         <div class="main-content">
             <div class="header">
-                <h1>Module Manager</h1>
-
+                <h1>Product Manager</h1>
                 <a href="{{ route('product.add') }}">
-                    <button class="btn btn-primary">Add New User</button>
+                    <button class="btn-primary">+ Add New Product</button>
                 </a>
             </div>
 
@@ -135,9 +148,9 @@
                             <th>Category</th>
                             <th>Image</th>
                             <th>Price</th>
-                            <th>Created_by</th>
-                            <th>EDIT</th>
-                            <th>DELETE</th>
+                            <th>Created By</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -145,20 +158,22 @@
                             <tr>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->category }}</td>
-                                <td> <img src="{{ asset('storage/' . $product->image) }}" alt=""></td>
-                                <td>{{ number_format($product->price, 0, ',', '.') }}</td>
+                                <td>
+                                    <img src="{{ asset('storage/' . $product->image) }}" alt="Product Image">
+                                </td>
+                                <td>Rp{{ number_format($product->price, 0, ',', '.') }}</td>
                                 <td>{{ $product->created_by }}</td>
                                 <td>
-                                    <form action="{{ route('product.edit', $product->id) }}" method="PUT">
-                                        <button class="edit-btn">EDIT</button>
-                                    </form>
+                                    <a href="{{ route('product.edit', $product->id) }}">
+                                        <button class="edit-btn">Edit</button>
+                                    </a>
                                 </td>
                                 <td>
                                     <form action="{{ route('product.delete', $product->id) }}" method="POST"
-                                        onsubmit="return confirm('Are you sure?')">
+                                        onsubmit="return confirm('Are you sure you want to delete this product?')">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="delete-btn">DELETE</button>
+                                        <button type="submit" class="delete-btn">Delete</button>
                                     </form>
                                 </td>
                             </tr>
@@ -168,7 +183,6 @@
             </div>
         </div>
     </div>
-
 </body>
 
 </html>

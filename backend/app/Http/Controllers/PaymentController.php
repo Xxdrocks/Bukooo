@@ -59,13 +59,10 @@ class PaymentController extends Controller
             'gross_amount' => (int) round($data['price']),
         ]);
 
-        // Set your Merchant Server Key
+        // Midtrans configuration
         Config::$serverKey = config('midtrans.serverKey');
-        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
         Config::$isProduction = false;
-        // Set sanitization on (default)
         Config::$isSanitized = true;
-        // Set 3DS transaction for credit card to true
         Config::$is3ds = true;
 
         $params = array(
@@ -73,27 +70,27 @@ class PaymentController extends Controller
                 'order_id' => rand(),
                 'gross_amount' => (int) round($data['price']),
             ),
-
             'customer_details' => array(
                 'user_id' => Auth::user()->id,
                 'email' => Auth::user()->email,
             )
         );
 
+
         $snapToken = Snap::getSnapToken($params);
 
         $payment->snap_token = $snapToken;
         $payment->save();
 
-        return redirect()->route('product')->with('success', 'anda berhasil melakukan pembayaran');
+        // Return the view with payment data instead of redirecting
+        return view('product.index', compact('payment'));
     }
-
-    public function checkout( payment $payment )
+    public function checkout(Payment $payment)
     {
-        $products= config('products');
-        $product= collect($products)->firstWhere('id', $payment->product_id);
+        $products = config('products');
+        $product = collect($products)->firstWhere('id', $payment->product_id);
 
-        return view('product.index', compact('payment','product'));
+        return view('product.index', compact('payment', 'product'));
     }
 
 

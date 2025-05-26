@@ -29,15 +29,15 @@ class SellerController extends Controller
 
 
         SellerProfile::create([
-            'user_id' => $user->id,
+            'user_id' => Auth::id(),
             'store_name' => $request->store_name,
             'address' => $request->address,
             'phone_number' => $request->phone_number,
         ]);
 
-        $user = new SellerProfile();
-        $user->role = 'seller';
-        $user->save();
+
+        $user->update(['role' => 'seller']);
+
 
         return redirect('/')->with('success', 'Sekarang kamu adalah seller!');
     }

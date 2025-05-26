@@ -169,26 +169,30 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2 @11"></script>
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS-CLIENT-KEY') }}"></script>
-     <script type="text/javascript">
-      document.getElementById('pay-button').onclick = function(){
-        // SnapToken acquired from previous step
-        snap.pay('{{ $payment->snap_token }}', {
-          // Optional
-          onSuccess: function(result){
-            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-          },
-          // Optional
-          onPending: function(result){
-            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-          },
-          // Optional
-          onError: function(result){
-            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-          }
-        });
-      };
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}">
     </script>
+    {{-- <script type="text/javascript">
+        document.getElementById('pay-button').onclick = function(e) {
+            e.preventDefault();
+            // SnapToken acquired from previous step
+            snap.pay('{{ $payment->snap_token }}', {
+                // Optional
+                onSuccess: function(result) {
+                    window.location.href = "{{ route('product') }}";
+                },
+                // Optional
+                onPending: function(result) {
+                    /* You may add your own js here, this is just example */
+                    console.log(JSON.stringify(result, null, 2));
+                },
+                // Optional
+                onError: function(result) {
+                    /* You may add your own js here, this is just example */
+                    console.log(JSON.stringify(result, null, 2));
+                }
+            });
+        };
+    </script> --}}
 </body>
 
 </html>

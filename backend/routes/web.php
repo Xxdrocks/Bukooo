@@ -106,8 +106,11 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/checkout/create', [PaymentController::class, 'create'])->name( 'payment.detail');
     Route::post('/checkout', [PaymentController::class, 'prosess'])->name('payment.prosess');
-    Route::get('/checkout/{payment}', [PaymentController::class, 'checkout'])->name('checkout');
+    Route::get('/checkout/{payment}', [PaymentController::class, 'checkout'])->name('payment.checkout');
 });
+
+Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
 
 
 

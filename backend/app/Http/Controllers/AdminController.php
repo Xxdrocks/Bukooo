@@ -198,4 +198,27 @@ class AdminController extends Controller
         Payment::findOrFail($id)->delete();
         return response()->json(['success' => true]);
     }
+
+    // AdminController.php
+    public function dashboard()
+    {
+        // Example data (replace with your actual query)
+        $ordersPerMonth = [
+            'Jan' => 10,
+            'Feb' => 15,
+            'Mar' => 8,
+            // ... other months
+        ];
+
+        $topProducts = [
+            ['name' => 'Product A', 'count' => 50],
+            ['name' => 'Product B', 'count' => 30],
+            // ... other products
+        ];
+
+        return view('admin.dashboard', [
+            'ordersPerMonth' => $ordersPerMonth,
+            'topProducts' => $topProducts,
+        ]);
+    }
 }
