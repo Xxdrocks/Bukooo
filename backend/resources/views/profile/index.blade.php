@@ -3,178 +3,170 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>My Account</title>
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bukoo Profile</title>
+
+    {{-- font --}}
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
     <style>
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
-            padding: 20px;
-            background: #fdfdfd;
+            padding: 0;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
-        .title {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 20px;
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            gap: 100px;
         }
 
-        .account-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto auto;
-            gap: 20px;
-            align-items: start;
-        }
 
         .profile-card {
-            background: #fff6c2;
-            padding: 20px;
-            border-radius: 10px;
-            width: 300px;
-            height: 300px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .profile-image {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: #d9d9d9;
-            margin: 0 auto 10px;
-        }
-
-        .profile-name {
+            background-color: #fff4b1;
+            font-size: 7px;
             text-align: center;
-            font-size: 18px;
-            margin-bottom: 20px;
+            align-items: center;
+            padding: 80px 20px;
+            width: 280px;
+            height: 250px;;
+            border-radius: 20px;
         }
 
-        .profile-info p {
+
+        .profile-card a {
+            font-size: 10px;
+            font-weight: 300;
+            text-decoration: none;
+            color:rgba(0, 0, 0, 0.701);
+        }
+
+        .card {
+
+            font-weight: 600;
+            font-size: 12px;
+            text-align: left;
+            margin-bottom: 50px;
+        }
+
+
+
+        .card p {
+            color: rgba(0, 0, 0, 0.733);
             display: flex;
             justify-content: space-between;
-            margin: 8px 0;
+        }
+
+
+        .right-container {
             font-size: 14px;
-        }
-
-        .change-link {
-            color: #666;
-            font-size: 12px;
-        }
-
-        .favorite-box,
-        .wishlist-box {
-            border-radius: 10px;
-            padding: 10px 20px 20px;
-            background: #fff;
-            border: 3px solid;
-        }
-
-        .favorite-box {
-            border-color: #f8b9b9;
-        }
-
-        .wishlist-box {
-            border-color: #c9e7ce;
-        }
-
-        .box-title {
-            font-weight: 600;
-            margin-top: -14px;
-            background: #fff;
-            display: inline-block;
-            padding: 0 10px;
-            font-size: 14px;
-        }
-
-        .box-content {
-            margin-top: 10px;
-            max-height: 150px;
-            overflow-y: auto;
-            font-size: 14px;
-        }
-
-        .payment-history {
-            margin-top: 40px;
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-            max-width: 700px;
-            max-height: 200px;
+            font-weight: 500;
 
         }
 
-        .payment-history h3 {
-            font-size: 18px;
-            margin-bottom: 15px;
+        .favorite-book {
+            width: 350px;
+            background: #ffbfae;
+            border-radius: 40px 10px 10px 10px;
+            padding: 20px 15px;
         }
 
-        .payment-history div {
-            font-size: 14px;
-            margin-bottom: 10px;
+        .favorite-book p {
+            background-color: white;
+            border-radius: 0 0 20px 0;
+            width: 30%;
+            margin-top: -20px;
+            padding-right: 5px;
+            margin-left: -10px;
         }
 
-        hr {
-            border: none;
-            border-top: 1px solid #ccc;
-            margin: 10px 0;
+        .favorite-image {
+            background-color: white;
+            border-radius: 20px 10px 10px 10px;
+            height: 170px;
+        }
+
+
+        .wishlist {
+            margin-top: 30px;
+            width: 350px;
+            background: #c8e6c9;
+            border-radius: 10px 40px 10px 10px;
+            padding: 20px 15px;
+
+        }
+
+        .wishlist p {
+            left: 300px;
+            position: relative;
+            background-color: white;
+            border-radius: 0px 0px 0px 20px;
+            width: 30%;
+            margin-top: -20px;
+            padding-left: 5px;
+            margin-left: 3px;
+        }
+
+        .wishlist-image {
+            background-color: white;
+            border-radius: 20px 10px 10px 10px;
+            height: 90px;
+
+        }
+
+        .wave {
+            width: 100%;
+            margin-top: -120px;
+            margin-left: -50px;
         }
     </style>
 </head>
 
 <body>
 
-    <h2 class="title">My Account</h2>
 
-    <div class="account-grid">
+    <div class="container">
+
         <div class="profile-card">
-            <div class="profile-image"></div>
-            <h3 class="profile-name">Nama</h3>
-            <div class="profile-info">
-                <p>username <span class="change-link">Change</span></p>
-                <p>{{ $user->sellerProfile->phone_number ?? '081234567890' }} <span class="change-link">Change</span></p>
-                <p>{{ $user->email }} <span class="change-link">Change</span></p>
+
+            <img src="" alt="">
+            <h1 style="border-bottom: 1px solid black; margin: 30px; padding: 10px;; ">Profile Card</h1>
+            <div class="card">
+                <p> <span>Username :</span>{{ $user->name ?? 'anak ilang lu gaada nama?' }}</p>
+                <p> <span>Number : </span>{{ $user->sellerProfile->phone_number ?? '081234567890' }}</p>
+                <p> <span>Email:</span>{{ $user->email }}</p>
+            </div>
+            <a href="{{ route ('profile.edit') }}">Change</a>
+        </div>
+
+        <div class="right-container">
+            <div class="favorite-book">
+                <p>Favorite Books</p>
+                <div class="favorite-image">
+                    <img src="" alt="">
+                </div>
+            </div>
+
+            <div class="wishlist">
+                <p>Wishlist</p>
+                <div class="wishlist-image">
+                    <img src="" alt="">
+                </div>
             </div>
         </div>
 
-        <div class="favorite-box">
-            <p class="box-title">Favorite Books</p>
-            <div class="box-content">
-                @forelse($user->books->where('is_favorite', true) as $book)
-                    <p>{{ $book->title }}</p>
-                @empty
-                    <p>No favorite books.</p>
-                @endforelse
-            </div>
-        </div>
-
-        <div class="wishlist-box">
-            <p class="box-title">Wishlist</p>
-            <div class="box-content">
-                @forelse($user->wishlist as $wish)
-                    <p>{{ $wish->book->title }}</p>
-                @empty
-                    <p>No wishlist items.</p>
-                @endforelse
-            </div>
-        </div>
     </div>
 
-    <div class="payment-history">
-        <h3>Riwayat Pembayaran</h3>
-        @forelse($user->payments as $payment)
-            <div>
-                <strong>Order ID:</strong> {{ $payment->order_id }}<br>
-                <strong>Jumlah:</strong> Rp{{ number_format($payment->price, 0, ',', '.') }}<br>
-                <strong>Status:</strong> {{ $payment->status }}<br>
-                <p>Tanggal Bayar: {{ $payment->paid_at_formatted }}</p>
-            </div>
-            <hr>
-        @empty
-            <p>Tidak ada pembayaran.</p>
-        @endforelse
-    </div>
-
+    <img src="{{ asset('assets/background/Vectorwave.png') }}" class="wave" alt="">
 </body>
 
 </html>

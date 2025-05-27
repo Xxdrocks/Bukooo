@@ -52,7 +52,7 @@
 
         .main-home {
 
-            min-height: 130vh;
+            min-height: 140vh;
             background: url('assets/background/bg.png');
             background-size: cover;
             background-repeat: no-repeat;
