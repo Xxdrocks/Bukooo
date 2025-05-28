@@ -133,6 +133,9 @@
 
 <body>
 
+        @include('components.nav')
+
+
 
     <div class="container">
 

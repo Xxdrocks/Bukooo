@@ -88,6 +88,8 @@
     }
 </style>
 
+    @include('components.nav')
+
 <div class="container">
     <h1>My Books Shelf</h1>
 

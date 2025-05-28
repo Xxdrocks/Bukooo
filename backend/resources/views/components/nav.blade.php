@@ -12,6 +12,12 @@
 
 <nav>
     <style>
+
+        * {
+            scroll-behavior: smooth;
+        }
+
+
         nav {
             margin: 0;
             padding: ;

@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer class="footer" id="contact">
     <div class="footer-top">
         <div class="footer-brand">
             <img src="{{ asset('assets/navbar/logo.png') }}" alt="Logo">

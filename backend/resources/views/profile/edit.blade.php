@@ -81,6 +81,8 @@
     </style>
 </head>
 <body>
+        @include('components.nav')
+
     <div class="container">
         <h2>Edit User</h2>
 

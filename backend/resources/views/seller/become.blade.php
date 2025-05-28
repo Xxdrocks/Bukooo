@@ -94,6 +94,8 @@
 </style>
 
 
+    @include('components.nav')
+
 <div class="container mt-4">
     <h2>Daftar Sebagai Seller</h2>
 
