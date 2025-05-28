@@ -197,6 +197,7 @@
                         })
                         .then(response => response.json())
                         .then(data => {
+                            console.log("Response dari server:", data);
                             const isLiked = data.status === 'added';
                             btn.src = isLiked ?
                                 "{{ asset('assets/product/redheart.png') }}" :

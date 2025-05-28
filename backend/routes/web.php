@@ -112,7 +112,8 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
-Route::post('/favorite', [FavoriteController::class, 'toggle'])->name('favorite.toggle');
+Route::post('/favorite', [FavoriteController::class, 'toggle'])->name('favorite.toggle')->middleware('auth');
+Route::get('/favorite', [FavoriteController::class, 'index'])->name('favorites.index');
 
 
 

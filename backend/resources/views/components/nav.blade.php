@@ -168,7 +168,7 @@
     </div>
 
     <div class="nav-right">
-        <a href=""><img src="{{ asset('assets/navbar/heart.png') }}" alt="Wishlist"></a>
+        <a href="{{ route('favorites.index') }}"><img src="{{ asset('assets/navbar/heart.png') }}" alt="Wishlist"></a>
         <button id="accountBtn">
             <img src="{{ asset('assets/navbar/user.png') }}" alt="User">
         </button>
