@@ -544,18 +544,21 @@
         <div class="book-grid">
             @foreach ($products as $product)
                 <!-- Product 1 -->
-                <div class="product-card">
+                <form action="{{ route('payment.create') }}" method="GET" onclick="this.submit()">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <div class="product-card">
 
-                    <img src="{{ asset('storage/' . $product->image) }}" class="book-image" alt="{{ $product->name }}">
-                    <div class="productcontent">
-                        <img class="new-label" src="assets/product/new.png" alt="New">
-                        <p class="book-title">{{ $product->name }}</p>
-                        <p class="book-price">{{ $product->price }}</p>
+                        <img src="{{ asset('storage/' . $product->image) }}" class="book-image"
+                            alt="{{ $product->name }}">
+                        <div class="productcontent">
+                            <img class="new-label" src="assets/product/new.png" alt="New">
+                            <p class="book-title">{{ $product->name }}</p>
+                            <p class="book-price">{{ $product->price }}</p>
+                        </div>
+                        <img class="heart-icon like-btn" src="assets/product/heart.png" alt="Favorite">
                     </div>
-                    <img class="heart-icon like-btn" src="assets/product/heart.png" alt="Favorite">
-                </div>
-
-
+                </form>
             @endforeach
         </div>
 
@@ -583,7 +586,8 @@
                     kita ke berbagai tempat dan pengalaman baru.
 
                 </p>
-                <button data-aos="slide-up" data-aos-duration="1000" data-aos-offset="50"     onclick="window.location.href='{{ route('product') }}'">
+                <button data-aos="slide-up" data-aos-duration="1000" data-aos-offset="50"
+                    onclick="window.location.href='{{ route('product') }}'">
                     Lets Read a Book
                 </button>
 

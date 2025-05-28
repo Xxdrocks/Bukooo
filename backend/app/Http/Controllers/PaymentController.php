@@ -22,6 +22,7 @@ class PaymentController extends Controller
     {
         $user = Auth::user();
         $payments = Auth::user()->payments;
+        $products = Product::all();
 
         return view('payment.index', compact('payments'));
     }
@@ -49,48 +50,59 @@ class PaymentController extends Controller
             'price' => 'required|numeric|min:1',
         ]);
 
-        $data = $request->all();
+        $user = Auth::user();
+        $product = Product::findOrFail($request->product_id);
+        $grossAmount = (int) round($request->price);
 
+        // Unique order ID
+        $orderId = 'ORDER-' . uniqid();
+
+        // Create local payment record
         $payment = Payment::create([
-            'user_id' => Auth::user()->id,
-            'product_id' => $data['product_id'],
-            'price' => $data['price'],
-            'status' => 'pending',
-            'gross_amount' => (int) round($data['price']),
+            'user_id' => $user->id,
+            'product_id' => $product->id,
+            'price' => $request->price,
+            'status' => 'paid',
+            'gross_amount' => $grossAmount,
+            'order_id' => $orderId,
         ]);
 
-        // Midtrans configuration
+        // Midtrans config
         Config::$serverKey = config('midtrans.serverKey');
-        Config::$isProduction = false;
-        Config::$isSanitized = true;
-        Config::$is3ds = true;
+        Config::$isProduction = config('midtrans.isProduction');
+        Config::$isSanitized = config('midtrans.isSanitized');
+        Config::$is3ds = config('midtrans.is3ds');
 
-        $params = array(
-            'transaction_details' => array(
-                'order_id' => rand(),
-                'gross_amount' => (int) round($data['price']),
-            ),
-            'customer_details' => array(
-                'user_id' => Auth::user()->id,
-                'email' => Auth::user()->email,
-            )
-        );
+        // Payload to Midtrans
+        $params = [
+            'transaction_details' => [
+                'order_id' => $orderId,
+                'gross_amount' => $grossAmount,
+            ],
+            'customer_details' => [
+                'first_name' => $user->name,
+                'email' => $user->email,
+            ],
+        ];
 
-
+        // Request snap token from Midtrans
         $snapToken = Snap::getSnapToken($params);
 
+        if ($request->status === 'paid') {
+
+            $payment->paid_at = now();
+        }
+        // Save token
         $payment->snap_token = $snapToken;
         $payment->save();
 
-        // Return the view with payment data instead of redirecting
-        return view('product.index', compact('payment'));
+        return redirect()->route('payment.checkout', $payment->id);
     }
+
     public function checkout(Payment $payment)
     {
-        $products = config('products');
-        $product = collect($products)->firstWhere('id', $payment->product_id);
-
-        return view('product.index', compact('payment', 'product'));
+        $products = Product::all();
+        return view('payment.checkout', compact('payment', 'products'));
     }
 
 
@@ -119,10 +131,7 @@ class PaymentController extends Controller
 
     //     //jika status paid
 
-    //     if ($request->status === 'paid') {
 
-    //         $payment->paid_at = now();
-    //     }
 
     //     $payment->save();
 

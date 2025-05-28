@@ -149,26 +149,23 @@
 
 
     <section class="product-section">
-        <div class="product-grid" >
+        <div class="product-grid">
             @foreach ($products as $product)
-                <form action="{{ route('payment.detail') }}" method="GET" class="product-card"
-                    onclick="this.submit()">
+                <form action="{{ route('payment.create') }}" method="GET" onclick="this.submit()">
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <div class="product-card">
 
-                    <!-- Gambar buku -->
-                    <img src="{{ asset('storage/' . $product->image) }}" class="book-image" alt="{{ $product->name }}">
-
-                    <div class="productcontent">
-                        <img class="new-label" src="/assets/product/new.png" alt="New">
-
-                        <p class="book-title">{{ $product->name }}</p>
-                        <p class="book-price">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
+                        <img src="{{ asset('storage/' . $product->image) }}" class="book-image"
+                            alt="{{ $product->name }}">
+                        <div class="productcontent">
+                            <img class="new-label" src="assets/product/new.png" alt="New">
+                            <p class="book-title">{{ $product->name }}</p>
+                            <p class="book-price">{{ $product->price }}</p>
+                        </div>
+                        <input type="hidden" class="product-id" value="{{ $product->id }}">
+                        <img class="heart-icon like-btn" src="assets/product/heart.png" alt="Favorite">
                     </div>
-
-                    <!-- Icon love -->
-                    <img class="heart-icon like-btn" data-book-id="{{ $product->id }}" src="/assets/product/heart.png"
-                        alt="Favorite">
                 </form>
             @endforeach
         </div>
@@ -176,52 +173,54 @@
 
     @include('layouts.footer')
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        document.querySelectorAll('.heart-icon').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.like-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    e.preventDefault();
 
-                const bookId = this.dataset.bookId;
+                    const productId = btn.closest('.product-card').querySelector('.product-id')
+                        .value;
 
-                fetch("{{ route('wishlist.toggle') }}", {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        },
-                        body: JSON.stringify({
-                            book_id: bookId
+                    fetch("{{ route('favorite.toggle') }}", {
+                            method: "POST",
+                            headers: {
+                                "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                                "Content-Type": "application/json",
+                                "Accept": "application/json"
+                            },
+                            body: JSON.stringify({
+                                product_id: productId
+                            })
                         })
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        const isLiked = data.status === 'added';
-                        btn.src = isLiked ? "{{ asset('assets/product/redheart.png') }}" :
-                            "{{ asset('assets/product/heart.png') }}";
+                        .then(response => response.json())
+                        .then(data => {
+                            const isLiked = data.status === 'added';
+                            btn.src = isLiked ?
+                                "{{ asset('assets/product/redheart.png') }}" :
+                                "{{ asset('assets/product/heart.png') }}";
 
-                        Swal.fire({
-                            title: isLiked ? 'Ditambahkan ke Favorit ❤️' :
-                                'Dihapus dari Favorit 💔',
-                            text: isLiked ? 'Produk ini masuk daftar kesukaanmu!' :
-                                'Produk ini dihapus dari favoritmu!',
-                            icon: isLiked ? 'success' : 'warning',
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 1500
+                            Swal.fire({
+                                title: isLiked ? 'Ditambahkan ke Favorit ❤️' :
+                                    'Dihapus dari Favorit 💔',
+                                text: isLiked ?
+                                    'Produk ini masuk daftar kesukaanmu!' :
+                                    'Produk ini dihapus dari favoritmu!',
+                                icon: isLiked ? 'success' : 'warning',
+                                showConfirmButton: false,
+                                timer: 1500,
+                                toast: true,
+                                position: 'top-end'
+                            });
                         });
-                    });
+                });
             });
         });
     </script>
 
 
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
 
 </body>
 

@@ -6,6 +6,8 @@ use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Payment;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Log;
@@ -21,6 +23,12 @@ class ProfileController extends Controller
     public function index()
     {
         $user = tap(Auth::user())->load(['payments', 'books', 'sellerProfile']);
+        $payments = Payment::where('user_id', $user->id)
+            ->where('status', 'paid') // Assuming 'status' indicates payment status
+            ->get();
+
+        $products = Product::whereIn('id', $payments->pluck('product_id'))->get();
+
         return view('profile.index', compact('user'));
     }
 

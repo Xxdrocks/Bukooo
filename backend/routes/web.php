@@ -10,6 +10,7 @@ use App\Http\Controllers\SellerController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FavoriteController;
 use App\Models\Product;
 
 
@@ -104,13 +105,14 @@ Route::middleware('auth')->group(function () {
 
 // Payment
 Route::middleware('auth')->group(function () {
-    Route::get('/checkout/create', [PaymentController::class, 'create'])->name( 'payment.detail');
+    Route::get('/checkout/create', [PaymentController::class, 'create'])->name( 'payment.create');
     Route::post('/checkout', [PaymentController::class, 'prosess'])->name('payment.prosess');
     Route::get('/checkout/{payment}', [PaymentController::class, 'checkout'])->name('payment.checkout');
 });
 
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
+Route::post('/favorite', [FavoriteController::class, 'toggle'])->name('favorite.toggle');
 
 
 
