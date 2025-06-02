@@ -38,7 +38,8 @@
             align-items: center;
             padding: 80px 20px;
             width: 280px;
-            height: 250px;;
+            height: 250px;
+            ;
             border-radius: 20px;
         }
 
@@ -47,7 +48,7 @@
             font-size: 10px;
             font-weight: 300;
             text-decoration: none;
-            color:rgba(0, 0, 0, 0.701);
+            color: rgba(0, 0, 0, 0.701);
         }
 
         .card {
@@ -74,7 +75,8 @@
         }
 
         .favorite-book {
-            width: 350px;
+            width: auto;
+            height: auto;
             background: #ffbfae;
             border-radius: 40px 10px 10px 10px;
             padding: 20px 15px;
@@ -90,10 +92,21 @@
         }
 
         .favorite-image {
+            display: flex;
+            flex-direction: row;
             background-color: white;
-            border-radius: 20px 10px 10px 10px;
-            height: 170px;
+            border-radius: 10px 40px 10px 10px;
+            gap: 10px;
+            height: 90px;
+            padding: 10px;
         }
+
+
+        .favorite-image img {
+            width: auto;
+            height: 100%;
+        }
+
 
 
         .wishlist {
@@ -133,7 +146,7 @@
 
 <body>
 
-        @include('components.nav')
+    @include('components.nav')
 
 
 
@@ -148,16 +161,20 @@
                 <p> <span>Number : </span>{{ $user->sellerProfile->phone_number ?? '081234567890' }}</p>
                 <p> <span>Email:</span>{{ $user->email }}</p>
             </div>
-            <a href="{{ route ('profile.edit') }}">Change</a>
+            <a href="{{ route('profile.edit') }}">Change</a>
         </div>
 
         <div class="right-container">
+
             <div class="favorite-book">
                 <p>Favorite Books</p>
-                <div class="favorite-image">
-                    <img src="" alt="">
+                <div class="favorite-image"> <!-- Taruh di luar loop -->
+                    @foreach ($favorites as $fav)
+                        <img src="{{ asset('storage/' . $fav->product->image) }}" alt="{{ $fav->product->name }}">
+                    @endforeach
                 </div>
             </div>
+
 
             <div class="wishlist">
                 <p>Wishlist</p>

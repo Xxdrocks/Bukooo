@@ -10,6 +10,17 @@ use Illuminate\Http\Request;
 class FavoriteController extends Controller
 {
 
+    public function profile()
+    {
+        $user = Auth::user();
+
+        $favorites = Favorite::with('product')
+            ->where('user_id', $user->id)
+            ->get();
+
+        return view('profile.index', ['favorites' => $favorites]);
+    }
+
     public function index()
     {
         $user = Auth::user();

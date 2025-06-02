@@ -20,4 +20,9 @@ class SellerProfile extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function favorites()
+    {
+        return $this->belongsTo(Favorite::class);
+    }
 }

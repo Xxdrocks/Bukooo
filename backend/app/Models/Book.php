@@ -29,4 +29,9 @@ class Book extends Model
     {
         return $this->hasMany(Wishlist::class);
     }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
 }
