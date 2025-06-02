@@ -54,7 +54,7 @@ Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.s
 Route::get('/', function () {
     $products = Product::all();
     return view('home', compact('products'));
-})->middleware('auth')->name('home');
+})->name('home');
 
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])

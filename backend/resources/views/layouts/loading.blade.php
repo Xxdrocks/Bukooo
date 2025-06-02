@@ -5,7 +5,7 @@
     <title>Fullscreen Loading</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-        /* Fullscreen style untuk SweetAlert2 */
+
         .swal2-popup {
             width: 100vw !important;
             height: 100vh !important;
@@ -17,7 +17,7 @@
             align-items: center;
         }
 
-        /* Animasi slide dari bawah */
+
         .swal2-slide-up {
             animation: slideUp 0.5s ease-out;
         }

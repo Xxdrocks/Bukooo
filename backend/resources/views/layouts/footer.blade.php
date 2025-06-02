@@ -2,10 +2,7 @@
     <div class="footer-top">
         <div class="footer-brand">
             <img src="{{ asset('assets/navbar/logo.png') }}" alt="Logo">
-            <div class="social-icons">
-                <a href="#"><img src="{{ asset('assets/icons/ig.svg') }}" alt="Instagram"></a>
-                <a href="#"><img src="{{ asset('assets/icons/mail.svg') }}" alt="Email"></a>
-            </div>
+
         </div>
         <div class="footer-links">
             <div class="column">
@@ -36,7 +33,7 @@
     </div>
     <div class="footer-bottom">
         <div class="footer-question">
-            <h3>If you didn’t find the products<br>you are interested in or have questions?</h3>
+            <h3>If you didn't find the products<br>you are interested in or have questions?</h3>
         </div>
         <form class="contact-form">
             <input type="email" placeholder="Your email..." required>
@@ -46,158 +43,254 @@
 </footer>
 
 <style>
-   .footer {
+.footer {
     margin-top: 100px;
     background: url('/assets/background/bg.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    padding: 60px 20px;
-    font-family: Arial, sans-serif;
+    padding: 40px 20px;
+    font-family: "Poppins", sans-serif;
     color: #333;
 }
 
 .footer-top {
     background-color: white;
     border-radius: 15px;
-    padding: 40px;
+    padding: 30px;
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
-    margin-bottom: 40px;
+    gap: 30px;
+    margin-bottom: 30px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
 }
 
 .footer-brand {
-    flex: 1;
-    min-width: 200px;
-    margin-bottom: 20px;
+    flex: 1 1 200px;
 }
 
-.footer-brand a {
-    padding-top: 50px;
-    text-decoration: none;
-    color: #333;
-}
 .footer-brand img {
     width: 60px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
+
 .social-icons {
-    margin-top: 10px;
+    margin-top: 15px;
+    display: flex;
+    gap: 15px;
 }
+
 .social-icons a img {
     width: 30px;
-    margin-right: 15px;
+    height: 30px;
 }
 
 .footer-links {
-    flex: 2;
+    flex: 2 1 300px;
     display: flex;
-    justify-content: center;
-    gap: 80px;
     flex-wrap: wrap;
-    margin-bottom: 20px;
+    gap: 40px;
 }
+
 .footer-links .column {
+    flex: 1 1 120px;
     display: flex;
     flex-direction: column;
+    gap: 8px;
 }
+
 .footer-links h4 {
-    font-weight: bold;
-    margin-bottom: 10px;
+    font-weight: 600;
+    margin-bottom: 5px;
     font-size: 1rem;
 }
+
 .footer-links a {
-    margin-bottom: 6px;
     text-decoration: none;
     color: #333;
     font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #000;
 }
 
 .footer-contact {
-    flex: 1;
-    min-width: 200px;
-    margin-bottom: 20px;
+    flex: 1 1 200px;
 }
+
 .call-btn {
     background: #000;
     color: #fff;
-    padding: 8px 16px;
+    padding: 10px 16px;
     border: none;
     border-radius: 4px;
     font-size: 0.9rem;
     cursor: pointer;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    transition: background 0.2s;
 }
+
+.call-btn:hover {
+    background: #333;
+}
+
 .email {
     font-size: 0.85rem;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
+
 .rating {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    gap: 8px;
 }
+
 .badge {
     background: #69b04f;
     color: white;
     border-radius: 999px;
     padding: 5px 10px;
     font-size: 0.8rem;
-    margin-right: 10px;
+    font-weight: 600;
 }
+
 .label {
     font-size: 0.8rem;
 }
+
 .address {
     font-size: 0.85rem;
-    margin-top: 10px;
+    line-height: 1.4;
 }
 
 .footer-bottom {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: flex-start;
-    gap: 40px;
+    align-items: center;
+    gap: 30px;
 }
 
 .footer-question h3 {
     color: white;
     font-size: 1.5rem;
-    max-width: 400px;
-    font-weight: bold;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 20px;
 }
 
 .contact-form {
-    flex: 1;
-    min-width: 280px;
+    flex: 1 1 300px;
     display: flex;
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 30px;
     overflow: hidden;
     backdrop-filter: blur(5px);
+    max-width: 500px;
 }
+
 .contact-form input {
     border: none;
-    padding: 12px 16px;
+    padding: 12px 20px;
     outline: none;
     flex: 1;
     background: transparent;
     color: white;
+    font-family: "Poppins", sans-serif;
 }
+
 .contact-form input::placeholder {
     color: rgba(255, 255, 255, 0.6);
 }
+
 .contact-form button {
     border: none;
     background: transparent;
     color: white;
-    padding: 12px 20px;
+    padding: 0 20px;
     font-size: 1.2rem;
     cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.contact-form button:hover {
+    transform: translateX(3px);
 }
 
 
+@media (max-width: 992px) {
+    .footer-top {
+        gap: 40px;
+    }
+
+    .footer-links {
+        gap: 60px;
+    }
+
+    .footer-question h3 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        margin-top: 60px;
+        padding: 30px 15px;
+    }
+
+    .footer-top {
+        padding: 25px;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .footer-links {
+        gap: 40px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-question h3 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    .contact-form {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 25px 10px;
+    }
+
+    .footer-top {
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .footer-question h3 {
+        font-size: 1.1rem;
+    }
+
+    .contact-form input {
+        padding: 10px 15px;
+    }
+
+    .contact-form button {
+        padding: 0 15px;
+    }
+}
 </style>

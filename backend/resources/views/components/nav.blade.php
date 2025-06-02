@@ -1,80 +1,53 @@
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-
-
-</head>
-
-
-
-<nav>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-
         * {
             scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
+        body {
+            padding-top: 80px;
+        }
 
         nav {
-            margin: 0;
-            padding: ;
             font-family: "Poppins", sans-serif;
-            top: 0;
-            right: 0;
-            left: 0;
             position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 5px 30px;
+            padding: 10px 30px;
             background-color: white;
-            z-index: 15;
-            overflow-x: hidden;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-
-
 
         .nav-left img {
             width: 70px;
+            height: auto;
         }
+
 
         .nav-center {
             display: flex;
-            gap: 70px;
-
-
+            gap: 40px;
+            transition: all 0.3s ease;
         }
 
         .nav-center a {
             text-decoration: none;
             color: black;
-            font-weight: 700;
+            font-weight: 600;
             padding-bottom: 5px;
             position: relative;
-
-        }
-
-
-
-        .nav-right {
-            display: flex;
-            gap: 20px;
-
-        }
-
-        .nav-right button {
-            background: none;
-            border: none;
-            padding: none;
-        }
-
-        .nav-right img {
-            width: 20px;
-            cursor: pointer;
-
+            font-size: 16px;
         }
 
         .nav-center a::after {
@@ -92,145 +65,346 @@
             width: 100%;
         }
 
-        .sidebar {
-            border-radius: 10px;
-            position: fixed;
-            top: 70px;
-            right: -100%;
-            width: 250px;
-            background-color: white;
-            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            z-index: 999;
-            transition: right 0.4s ease-in-out;
+        .nav-right {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-right button {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .nav-right img {
+            width: 20px;
+            height: auto;
         }
 
 
-        .sidebar a {
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: black;
+            position: absolute;
+            left: 0;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger span:nth-child(1) {
+            top: 6px;
+        }
+
+        .hamburger span:nth-child(2) {
+            top: 12px;
+        }
+
+        .hamburger span:nth-child(3) {
+            top: 18px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 12px;
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            top: 12px;
+        }
+
+
+        .profile-sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+            padding: 80px 20px 20px;
+            z-index: 1000;
+            transition: right 0.4s ease-in-out;
+            overflow-y: auto;
+        }
+
+        .profile-sidebar.show {
+            right: 0;
+        }
+
+        .profile-sidebar a {
+            display: block;
             color: black;
             text-decoration: none;
             font-weight: 600;
-            font-size: 15px;
-            transition: 0.3s ease-in-out;
-        }
-
-        .sidebar a:hover {
-            background: rgb(53, 53, 53);
-            color: white;
+            font-size: 16px;
+            padding: 10px 15px;
+            margin-bottom: 5px;
             border-radius: 5px;
+            transition: all 0.3s ease;
         }
 
-        .sidebar p:hover {
-            background: rgb(53, 53, 53);
-            color: white;
-            border-radius: 5px;
+        .profile-sidebar a:hover {
+            background-color: #f0f0f0;
         }
 
-
-        .sidebar h3 {
-            font-size: 15px;
-            margin-bottom: 10px
+        .profile-sidebar h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            padding: 0 15px;
         }
 
-        .sidebar button {
-            font-size: 15px;
+        .profile-sidebar button {
+            display: block;
+            width: 100%;
+            padding: 10px 15px;
             margin-top: 15px;
-            font-weight: 500;
+            font-weight: 600;
             text-decoration: none;
             border: none;
             background: none;
             cursor: pointer;
-            transition: 0.3s ease-in-out;
-            width: 200px;
-            padding: 5px;
+            text-align: left;
             border-radius: 5px;
+            transition: all 0.3s ease;
         }
 
-        .sidebar button:hover {
-            background: rgb(53, 53, 53);
-            color: white;
-        }
-
-        .sidebar.show {
-            right: 0;
+        .profile-sidebar button:hover {
+            background-color: #f0f0f0;
         }
 
         .addproduct a {
             margin-top: 20px;
         }
+
+
+        .mobile-center-nav {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            transform: translateY(-150%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .mobile-center-nav.show {
+            transform: translateY(0);
+        }
+
+        .mobile-center-nav a {
+            display: block;
+            padding: 10px 0;
+            text-decoration: none;
+            color: black;
+            font-weight: 600;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-center-nav a:last-child {
+            border-bottom: none;
+        }
+
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            display: none;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+
+        @media (max-width: 992px) {
+            .nav-center {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-center {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .profile-sidebar {
+                width: 80%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 10px 15px;
+            }
+
+            .nav-left img {
+                width: 60px;
+            }
+        }
     </style>
+</head>
 
-    <div class="nav-left">
-        <img src="{{ asset('assets/navbar/logo.png') }}" alt="Logo">
-    </div>
-
-    <div class="nav-center">
-        <a href="{{ route('home') }}" class="active">Home</a>
-        <a href="{{ route('product') }}">Shop</a>
-        <a href="{{ route('mybooks') }}">My Books</a>
-        @auth
-        @endauth
-        <a href="#contact">Contact</a>
-    </div>
-
-    <div class="nav-right">
-        <a href="{{ route('favorites.index') }}"><img src="{{ asset('assets/navbar/heart.png') }}" alt="Wishlist"></a>
-        <button id="accountBtn">
-            <img src="{{ asset('assets/navbar/user.png') }}" alt="User">
-        </button>
-    </div>
-
-    <div id="sidebar" class="sidebar">
-        @auth
-            <h3>Curently in</h3>
-            <a href="{{ route('profile') }}">
-                <p>{{ Auth::user()->name }} </p>
-                <p style="font-size: 10px">{{ Auth::user()->email }}</p>
-            </a>
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit">Logout</button>
-            </form>
-        @else
-            <h3>Silakan Login atau Register</h3>
-            <a href="{{ route('login') }}" class="text-blue-500">Login</a> |
-            <a href="{{ route('register') }}" class="text-blue-500">Register</a>
-        @endauth
-
-
-        <div class="addproduct">
-            @auth
-                @php
-                    $user = auth()->user();
-                @endphp
-
-                @if ($user->getAttribute('role') === 'user')
-                    <a href="{{ route('become-seller') }}">Jadi Seller</a>
-                @elseif (in_array($user->getAttribute('role'), ['seller']))
-                    <a href="{{ route('products.create') }}">Add Product</a>
-                @elseif (in_array($user->getAttribute('role'), ['superadmin']))
-                    <a href="{{ route('admin.dashboard') }}">Dashboard Superadmin</a>
-                @endif
-            @endauth
+<body>
+    <nav>
+        <div class="nav-left">
+            <img src="{{ asset('assets/navbar/logo.png') }}" alt="Logo">
         </div>
-    </div>
+
+        <!-- Desktop Navigation -->
+        <div class="nav-center">
+            <a href="{{ route('home') }}" class="active">Home</a>
+            <a href="{{ route('product') }}">Shop</a>
+            <a href="{{ route('mybooks') }}">My Books</a>
+            @auth
+            @endauth
+            <a href="#contact">Contact</a>
+        </div>
+
+        <!-- Mobile Hamburger Menu -->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="nav-right">
+            <a href="{{ route('favorites.index') }}"><img src="{{ asset('assets/navbar/heart.png') }}" alt="Wishlist"></a>
+            <button id="profileBtn">
+                <img src="{{ asset('assets/navbar/user.png') }}" alt="User">
+            </button>
+        </div>
+
+        <!-- Mobile Center Navigation (Sliding Menu) -->
+        <div class="mobile-center-nav" id="mobileCenterNav">
+            <a href="{{ route('home') }}" class="active">Home</a>
+            <a href="{{ route('product') }}">Shop</a>
+            <a href="{{ route('mybooks') }}">My Books</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <!-- Profile Sidebar -->
+        <div id="profileSidebar" class="profile-sidebar">
+            @auth
+                <h3>Currently in</h3>
+                <a href="{{ route('profile') }}">
+                    <p>{{ Auth::user()->name }}</p>
+                    <p style="font-size: 12px; color: #666;">{{ Auth::user()->email }}</p>
+                </a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit">Logout</button>
+                </form>
+            @else
+                <h3>Please Login or Register</h3>
+                <a href="{{ route('login') }}">Login</a>
+                <a href="{{ route('register') }}">Register</a>
+            @endauth
+
+            <div class="addproduct">
+                @auth
+                    @php
+                        $user = auth()->user();
+                    @endphp
+
+                    @if ($user->getAttribute('role') === 'user')
+                        <a href="{{ route('become-seller') }}">Become Seller</a>
+                    @elseif (in_array($user->getAttribute('role'), ['seller']))
+                        <a href="{{ route('products.create') }}">Add Product</a>
+                    @elseif (in_array($user->getAttribute('role'), ['superadmin']))
+                        <a href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
+                    @endif
+                @endauth
+            </div>
+        </div>
+
+        <!-- Overlay for mobile -->
+        <div class="overlay" id="overlay"></div>
+    </nav>
 
     <script>
-        const accountBtn = document.getElementById('accountBtn');
-        const sidebar = document.getElementById('sidebar');
+        // Hamburger menu toggle for center navigation
+        const hamburger = document.getElementById('hamburger');
+        const mobileCenterNav = document.getElementById('mobileCenterNav');
+        const profileBtn = document.getElementById('profileBtn');
+        const profileSidebar = document.getElementById('profileSidebar');
+        const overlay = document.getElementById('overlay');
 
-        accountBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('hidden');
-            sidebar.classList.toggle('show');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileCenterNav.classList.toggle('show');
+            overlay.classList.toggle('show');
+
+            // Close profile sidebar if open
+            profileSidebar.classList.remove('show');
         });
 
-        window.addEventListener('click', (e) => {
-            if (!sidebar.contains(e.target) && !accountBtn.contains(e.target)) {
-                sidebar.classList.add('hidden');
-                sidebar.classList.remove('show');
-            }
+        // Profile sidebar toggle
+        profileBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            profileSidebar.classList.toggle('show');
+            overlay.classList.toggle('show');
+
+            // Close mobile center nav if open
+            hamburger.classList.remove('active');
+            mobileCenterNav.classList.remove('show');
+        });
+
+        // Close all menus when clicking overlay
+        overlay.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileCenterNav.classList.remove('show');
+            profileSidebar.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-center-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileCenterNav.classList.remove('show');
+                overlay.classList.remove('show');
+            });
+        });
+
+        // Close profile sidebar when clicking a link inside it
+        document.querySelectorAll('.profile-sidebar a, .profile-sidebar button').forEach(item => {
+            item.addEventListener('click', () => {
+                profileSidebar.classList.remove('show');
+                overlay.classList.remove('show');
+            });
         });
     </script>
-
-
-</nav>
+</body>

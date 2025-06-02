@@ -6,16 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Bukoo</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-
-    {{-- aos animation --}}
-
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         * {
             scrollbar-width: none;
             -ms-overflow-style: none;
+            box-sizing: border-box;
         }
 
         body::-webkit-scrollbar {
@@ -48,6 +45,8 @@
             font-size: 1.8rem;
             font-weight: 600;
             line-height: 1.5;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .product-section {
@@ -58,18 +57,19 @@
             padding: 20px;
         }
 
-
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
             padding: 0 30px;
             max-width: 1100px;
             margin: 0 auto;
+            justify-content: center;
         }
 
         .product-card {
-            width: 180px;
+            width: 100%;
+            max-width: 220px;
             height: 400px;
             background: #fff;
             border-radius: 10px;
@@ -78,28 +78,28 @@
             cursor: pointer;
             transition: 0.3s ease;
             padding-bottom: 10px;
-
+            margin: 0 auto;
         }
 
         .products {
-            padding: 30px
+            padding: 30px;
         }
-
 
         .book-image {
             width: 100%;
             max-height: 200px;
             object-fit: contain;
             margin-top: 50px;
-            /* padding: 20px; */
             transition: 0.2s ease-in-out;
             border-radius: 5px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .book-image:hover {
-            scale: 1.1;
+            transform: scale(1.1);
         }
-
 
         .new-label {
             width: 40px;
@@ -110,12 +110,14 @@
             font-size: 14px;
             font-weight: bold;
             margin: 5px 0;
+            text-align: center;
         }
 
         .book-price {
             color: #28a745;
             font-size: 14px;
             font-weight: 600;
+            text-align: center;
         }
 
         .heart-icon {
@@ -130,6 +132,75 @@
         .heart-icon:hover {
             transform: scale(1.1);
         }
+
+        @media (max-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .atasan {
+                padding: 40px 20px;
+                height: auto;
+                padding: 0;
+            }
+
+            .atasan h2 {
+                font-size: 1.5rem;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 20px;
+                padding: 0 15px;
+            }
+
+            .product-card {
+                height: 380px;
+            }
+
+            .book-image {
+                max-height: 180px;
+                margin-top: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .atasan {
+                padding: 30px 15px;
+                margin-bottom: 30px;
+            }
+
+            .atasan h2 {
+                font-size: 1.3rem;
+                line-height: 1.4;
+            }
+
+            .product-section {
+                padding: 20px 10px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+                gap: 15px;
+                padding: 0 10px;
+            }
+
+            .product-card {
+                height: 350px;
+            }
+
+            .book-image {
+                max-height: 160px;
+                margin-top: 30px;
+            }
+
+            .productcontent {
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 
@@ -140,13 +211,11 @@
     <!-- Header Section -->
     <div class="atasan">
         <h2>
-            “Untuk bisa membaca banyak buku diperlukan dua hal dimana uang dan waktu tidak termasuk diantaranya. Dua
-            hal tersebut adalah gairah dan kerendahan hati bahwa kita banyak tak tahu.”
+            "Untuk bisa membaca banyak buku diperlukan dua hal dimana uang dan waktu tidak termasuk diantaranya. Dua
+            hal tersebut adalah gairah dan kerendahan hati bahwa kita banyak tak tahu."
             <br>~ Helvy Tiana Rosa
         </h2>
     </div>
-
-
 
     <section class="product-section">
         <div class="product-grid">
@@ -155,7 +224,6 @@
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                     <div class="product-card">
-
                         <img src="{{ asset('storage/' . $product->image) }}" class="book-image"
                             alt="{{ $product->name }}">
                         <div class="productcontent">
@@ -220,11 +288,5 @@
             });
         });
     </script>
-
-
-
 </body>
-
-
-
 </html>

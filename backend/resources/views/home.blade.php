@@ -72,7 +72,6 @@
             justify-content: center;
             font-weight: 700;
             font-size: 100px;
-            /* z-index: -10; */
             margin-top: -50px;
         }
 
@@ -160,7 +159,6 @@
 
         .bookcontent {
 
-            /* margin-left: 75px; */
             margin-top: 200px;
             text-align: center;
         }
@@ -309,6 +307,153 @@
             width: 400px;
             font-size: 20px;
         }
+
+
+        @media only screen and (max-width: 992px) {
+            .main-home h1 {
+                font-size: 5rem;
+                margin-top: -50px;
+            }
+
+            .bigText {
+                font-size: 4rem;
+            }
+
+            .iklan {
+                margin-top: -450px;
+                gap: 100px;
+            }
+
+            .product-card {
+                width: 180px;
+                height: 400px;
+            }
+
+            .article img {
+                width: 400px;
+            }
+
+            .articlecontent p {
+                width: 400px;
+                font-size: 1.25rem;
+            }
+        }
+
+        @media only screen and (max-width: 768px) {
+            .main-home {
+                margin-top: 100px;
+                min-height: 50vh;
+            }
+
+            .main-home h1 {
+                font-size: 3rem;
+                margin-top: -30px;
+            }
+
+            .home-h1 {
+                padding-top: 60px;
+            }
+
+            .bigText {
+                font-size: 2.5rem;
+            }
+
+            .iklan {
+                margin-top: -150px;
+                padding: 0 20px;
+            }
+
+            .iklan img {
+                width: 50%;
+                max-width: 500px;
+            }
+
+            .wave-wrapper {
+                margin-top: -100px;
+            }
+
+
+            .bookcontent {
+                margin-top: 100px;
+
+            }
+
+            .bookcontent h1 {
+                font-size: 1.5rem;
+                margin-bottom: 30px;
+            }
+
+            .product-card {
+                width: 150px;
+                height: 350px;
+                margin-bottom: 30px;
+            }
+
+            .book-image {
+                max-height: 180px;
+                margin-top: 15px;
+                padding: 15px;
+            }
+
+            .productcontent p {
+                padding: 8px;
+                font-size: 0.8rem;
+            }
+
+            .new-label {
+                width: 30px;
+            }
+
+            .article {
+                flex-direction: column;
+                align-items: center;
+                padding: 0 20px;
+                margin-bottom: 50px;
+            }
+
+            .article img {
+                width: 100%;
+                max-width: 400px;
+                margin-right: 0;
+                margin-bottom: 30px;
+            }
+
+            .articlecontent {
+                width: 100%;
+                max-width: 400px;
+                text-align: center;
+            }
+
+            .articlecontent button {
+                padding: 12px;
+                margin-top: 20px;
+            }
+
+            .articlecontent p {
+                width: 100%;
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+
+
+
+        }
+
+        @media only screen and (max-width: 480px) {
+            .main-home h1 {
+                font-size: 2.5rem;
+            }
+
+            .bigText {
+                font-size: 2rem;
+            }
+
+            .product-card {
+                width: 140px;
+                height: 320px;
+            }
+        }
+
 
 
         @keyframes upAppear {
