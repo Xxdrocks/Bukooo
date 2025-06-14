@@ -40,7 +40,7 @@
             padding: 10px;
             width: 280px;
             height: 250px;
-            ;
+
             border-radius: 20px;
         }
 
@@ -155,8 +155,9 @@
     }
 
     .profile-card {
+
         width: 90%;
-        height: auto;
+        height: 280px;;
         font-size: 10px;
     }
 
@@ -201,7 +202,10 @@
         margin-left: -80px;
     }
 
-
+    .favorite-book p {
+        padding-right: 0;
+        width: 50%;
+    }
 
     .wave {
         margin-top: 10px;

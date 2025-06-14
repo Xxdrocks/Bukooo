@@ -213,13 +213,15 @@
         }
 
         .book-image {
-            width: 100%;
-            max-height: 200px;
-            object-fit: cover;
-            margin-top: 20px;
-            padding: 20px;
+           width: 100%;
+            height: 250px;
+            object-fit: contain;
+            padding-top: 50px;
             transition: 0.2s ease-in-out;
             border-radius: 5px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
 
@@ -341,7 +343,7 @@
 
         @media only screen and (max-width: 768px) {
             .main-home {
-                margin-top: 100px;
+
                 min-height: 50vh;
             }
 

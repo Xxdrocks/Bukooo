@@ -142,7 +142,7 @@
             z-index: 1000;
             transition: right 0.4s ease-in-out;
             overflow-y: auto;
-            border-radius: 20px;
+            border-radius: 20px 0px 0px 20px ;
         }
 
         .profile-sidebar.show {
@@ -155,7 +155,7 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 16px;
-            padding: 10px 15px;
+            padding: 5px 15px;
             margin-bottom: 5px;
             border-radius: 5px;
             transition: all 0.3s ease;
@@ -166,9 +166,8 @@
         }
 
         .profile-sidebar h3 {
-
             font-size: 16px;
-            padding: 0 15px;
+            padding: 5px 15px;
         }
 
         .profile-sidebar button {

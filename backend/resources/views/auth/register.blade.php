@@ -140,6 +140,66 @@
             text-align: left;
             margin-left: 20px;
         }
+
+          @media (max-width: 768px) {
+            body {
+                background: white;
+                overflow-y: auto;
+            }
+
+            .mainform {
+                flex-direction: column;
+                width: 100%;
+                max-width: 400px;
+                height: auto;
+                border-radius: 16px;
+                margin: 20px auto;
+            }
+
+            .leftform,
+            .rightform {
+                width: 100%;
+                padding: 20px;
+                margin: 0;
+                align-items: center;
+                text-align: center;
+            }
+
+            .rightform {
+                margin-top: -120px;
+            }
+
+            .people {
+
+                margin-top: -80px;
+            }
+
+            .logo {
+                width: 50px;
+                margin-left: 0;
+            }
+
+            .rightform h1 {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+
+           .rightform small {
+                margin-top: 30px;
+
+            }
+
+            .rightform input,
+            .rightform button,
+            .googlelog {
+                width: 100%;
+                max-width: 260px;
+            }
+
+            .googlelog {
+                margin-left: 0;
+            }
+        }
     </style>
 </head>
 <body>

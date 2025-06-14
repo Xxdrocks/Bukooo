@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
 
 
 
@@ -123,6 +124,7 @@
         .rightform small {
             margin-top: 8px;
         }
+
         .googlelog {
             justify-content: center;
             display: flex;
@@ -131,18 +133,70 @@
             padding: 5px;
             border: 1px solid black;
             border-radius: 8px;
-width: 215px;
-margin-left: 38px
-
+            width: 215px;
+            margin-left: 38px
         }
 
-        .googlelog a{
+        .googlelog a {
             text-decoration: none;
         }
 
         .googlelog img {
             margin-bottom: -1px;
             margin-right: 5px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                align-items: flex-start;
+                padding: 20px;
+                height: auto;
+                overflow-y: auto;
+            }
+
+            .mainform {
+                flex-direction: column;
+                width: 100%;
+                max-width: 400px;
+                height: auto;
+                border-radius: 16px;
+                margin: 20px auto;
+            }
+
+            .leftform,
+            .rightform {
+                width: 100%;
+                padding: 20px;
+                margin: 0;
+                align-items: center;
+                text-align: center;
+            }
+
+            .people {
+                width: 80%;
+                max-width: 250px;
+            }
+
+            .logo {
+                width: 50px;
+                margin-left: 0;
+            }
+
+            .rightform h1 {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+
+            .rightform input,
+            .rightform button,
+            .googlelog {
+                width: 100%;
+                max-width: 260px;
+            }
+
+            .googlelog {
+                margin-left: 0;
+            }
         }
     </style>
 
@@ -166,11 +220,11 @@ margin-left: 38px
                 <p style="margin-top: 10px;">Atau</p>
 
                 <div class="googlelog">
-                <a href="/auth/google" class="google-login-btn">
-                    <img src="{{  asset('assets/form/google.png') }}" alt="Google" width="10px">
-                    Masuk dengan Google
-                </a>
-            </div>
+                    <a href="/auth/google" class="google-login-btn">
+                        <img src="{{ asset('assets/form/google.png') }}" alt="Google" width="10px">
+                        Masuk dengan Google
+                    </a>
+                </div>
 
             </form>
 

@@ -15,9 +15,9 @@
         rel="stylesheet">
 
 
-        {{--  aos  --}}
+    {{--  aos  --}}
 
-        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 </head>
 
@@ -143,14 +143,77 @@
             margin-right: 5px;
         }
 
+       @media (max-width: 768px) {
+            body {
+                background: white;
+                overflow-y: auto;
+            }
+
+            .mainform {
+                flex-direction: column;
+                width: 100%;
+                max-width: 400px;
+                height: auto;
+                border-radius: 16px;
+                margin: 20px auto;
+            }
+
+            .leftform,
+            .rightform {
+                width: 100%;
+                padding: 20px;
+                margin: 0;
+                align-items: center;
+                text-align: center;
+            }
+
+            .rightform {
+                margin-top: -130px;
+            }
+
+            .people {
+
+                margin-top: -50px;
+            }
+
+            .logo {
+                width: 50px;
+                margin-left: 0;
+            }
+
+            .rightform h1 {
+
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+
+           .rightform small {
+                margin-top: 50px;
+            }
+
+            .rightform input,
+            .rightform button,
+            .googlelog {
+                width: 100%;
+                max-width: 260px;
+            }
+
+            .googlelog {
+                margin-left: 0;
+            }
+        }
+
+
 
         @keyframes gradientMove {
             0% {
                 background-position: 0% 50%;
             }
+
             50% {
                 background-position: 100% 50%;
             }
+
             100% {
                 background-position: 0% 50%;
             }
@@ -158,20 +221,24 @@
     </style>
 
     <div class="mainform">
-        <div class="leftform" >
-            <img src="{{ asset('assets/form/logo.png') }}" alt="Logo" class="logo" data-aos="fade-right" data-aos-duration="1500">
-            <img src="{{ asset('assets/form/people.png') }}" alt="People" class="people" data-aos="fade-right" data-aos-duration="1400">
+        <div class="leftform">
+            <img src="{{ asset('assets/form/logo.png') }}" alt="Logo" class="logo" data-aos="fade-right"
+                data-aos-offset="10" data-aos-duration="1500">
+            <img src="{{ asset('assets/form/people.png') }}" alt="People" class="people" data-aos="fade-right"
+                data-aos-offset="10" data-aos-duration="1400">
         </div>
 
         <div class="rightform">
-            <h1 data-aos="fade-left" data-aos-duration="1500">Masuk Akun Bukoo</h1>
+            <h1 data-aos="fade-left" data-aos-offset="10" data-aos-duration="1500">Masuk Akun Bukoo</h1>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
-                <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" required data-aos="fade-left" data-aos-duration="1500" />
-                <input type="password" name="password" placeholder="Password" required data-aos="fade-left" data-aos-duration="1600"/>
-                <button type="submit" data-aos="fade-left" data-aos-duration="1500">Masuk</button >
-{{--
+                <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" required
+                    data-aos="fade-left" data-aos-offset="10" data-aos-duration="1500" />
+                <input type="password" name="password" placeholder="Password" required data-aos="fade-left"
+                    data-aos-duration="1600"  data-aos-offset="10"/>
+                <button type="submit" data-aos="fade-left" data-aos-duration="1500" data-aos-offset="10">Masuk</button>
+                {{--
                 <p style="margin-top: 10px;" data-aos="fade-left" data-aos-duration="1500">Atau</p>
 
                 <div class="googlelog" data-aos="fade-left" data-aos-duration="1500">
@@ -183,7 +250,8 @@
             </form>
 
             <small>
-                <a href="{{ route('register') }}" style="text-decoration: none;" data-aos="fade " data-aos-duration="1500">
+                <a href="{{ route('register') }}" style="text-decoration: none;"
+                    data-aos-duration="1500">
                     Belum Punya Akun? Daftar
                 </a>
             </small>
@@ -192,8 +260,8 @@
 
 
 
- {{--  aos   --}}
- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    {{--  aos   --}}
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
     </script>
