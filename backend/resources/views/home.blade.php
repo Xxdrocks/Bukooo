@@ -701,6 +701,7 @@
                             <p class="book-title">{{ $product->name }}</p>
                             <p class="book-price">{{ $product->price }}</p>
                         </div>
+                        <input type="hidden" class="product-id" value="{{ $product->id }}">
                         <img class="heart-icon like-btn" src="assets/product/heart.png" alt="Favorite">
                     </div>
                 </form>
@@ -751,32 +752,51 @@
 
 
         <script>
-            // heart icon animation
 
-            document.querySelectorAll('.heart-icon').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    e.preventDefault();
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelectorAll('.like-btn').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
 
-                    const isLiked = btn.classList.toggle('liked');
-                    btn.src = isLiked ?
-                        "{{ asset('assets/product/redheart.png') }}" :
-                        "{{ asset('assets/product/heart.png') }}";
+                        const productId = btn.closest('.product-card').querySelector('.product-id')
+                            .value;
 
-                    // SweetAlert2
-                    Swal.fire({
-                        title: isLiked ? 'Ditambahkan ke Favorit ❤️' : 'Dihapus dari Favorit 💔',
-                        text: isLiked ? 'Produk ini masuk daftar kesukaanmu!' :
-                            'Produk ini dihapus dari favoritmu!',
-                        icon: isLiked ? 'success' : 'warning',
-                        showConfirmButton: false,
-                        timer: 1500,
-                        toast: true,
-                        position: 'top-end'
+                        fetch("{{ route('favorite.toggle') }}", {
+                                method: "POST",
+                                headers: {
+                                    "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                                    "Content-Type": "application/json",
+                                    "Accept": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    product_id: productId
+                                })
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log("Response dari server:", data);
+                                const isLiked = data.status === 'added';
+                                btn.src = isLiked ?
+                                    "{{ asset('assets/product/redheart.png') }}" :
+                                    "{{ asset('assets/product/heart.png') }}";
+
+                                Swal.fire({
+                                    title: isLiked ? 'Ditambahkan ke Favorit ❤️' :
+                                        'Dihapus dari Favorit 💔',
+                                    text: isLiked ?
+                                        'Produk ini masuk daftar kesukaanmu!' :
+                                        'Produk ini dihapus dari favoritmu!',
+                                    icon: isLiked ? 'success' : 'warning',
+                                    showConfirmButton: false,
+                                    timer: 1500,
+                                    toast: true,
+                                    position: 'top-end'
+                                });
+                            });
                     });
                 });
             });
-
 
             document.addEventListener('mousemove', function(e) {
                 const img = document.getElementById('iklan');
@@ -836,7 +856,7 @@
                     const span = document.createElement('span');
                     span.textContent = char;
 
-                    // Arah acak ke kiri/kanan dan atas/bawah
+
                     const randX = Math.floor(Math.random() * 60 - 30) + 'px';
                     const randY = Math.floor(Math.random() * 60 - 30) + 'px';
                     span.style.setProperty('--x', randX);

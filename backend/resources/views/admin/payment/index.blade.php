@@ -81,6 +81,48 @@
         form {
             display: inline;
         }
+
+        @media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .main-content {
+        padding: 20px 15px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .header h1 {
+        font-size: 20px;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 600px;
+        font-size: 13px;
+    }
+
+    th,
+    td {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .delete-btn {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+}
+
     </style>
 </head>
 

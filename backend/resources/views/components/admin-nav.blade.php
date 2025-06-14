@@ -65,9 +65,51 @@
         width: 18px;
         height: 18px;
     }
+
+    /* Tombol hamburger */
+.hamburger-btn {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1001;
+    background: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Responsive untuk mobile */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -260px; /* disembunyikan dulu */
+        width: 250px;
+        height: 100vh;
+        background-color: #ffffff;
+        transition: left 0.3s ease;
+        z-index: 1000;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .hamburger-btn {
+        display: block;
+    }
+}
+
 </style>
 
-<!-- Sidebar HTML -->
+
+
+<button class="hamburger-btn" onclick="toggleSidebar()">
+    <i data-lucide="menu"></i>
+</button>
+
 <div class="sidebar">
     <div class="sidebar-header">
         <img src="{{ asset('assets/navbar/logo.png') }}" alt="">
@@ -88,7 +130,31 @@
     </nav>
 </div>
 
-<!-- Tambahkan ini sebelum </body> -->
+<script>
+    const sidebar = document.querySelector('.sidebar');
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+
+    function toggleSidebar() {
+        sidebar.classList.toggle('open');
+    }
+
+
+    document.addEventListener('click', function (e) {
+
+        if (
+            sidebar.classList.contains('open') &&
+            !sidebar.contains(e.target) &&
+            !hamburgerBtn.contains(e.target)
+        ) {
+            sidebar.classList.remove('open');
+        }
+    });
+
+    lucide.createIcons(); // tetap panggil lucide
+</script>
+
+
+
 <script>
     lucide.createIcons();
 </script>

@@ -1,8 +1,5 @@
-
-
 @include('components.nav')
 <style>
-
     * {
         margin: 0;
         padding: 0;
@@ -54,9 +51,9 @@
     }
 
     .book-card {
-        width: calc(25% - 15px);
+        width: 23%;
         height: 150px;
-        margin-bottom: 20px;
+        margin-bottom: 65px;
         overflow: hidden;
         transition: transform 0.3s ease;
     }
@@ -66,29 +63,48 @@
     }
 
     .book-cover {
-        padding-top: 30px;
+        padding-top: 40px;
         width: 100%;
         height: 100%;
         object-fit: contain;
         border-radius: 4px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
 
-    @media (max-width: 992px) {
-        .book-card {
-            width: calc(50% - 15px);
-        }
+    @media (max-width: 768px) {
+    .book-grid {
+        padding: 25px 10px 20px 10px;
+        gap: 5px;
     }
 
-    @media (max-width: 500px) {
-        .book-card {
-            width: 100%;
-        }
+    .book-card {
+        width: 20%;
+        height: 100px;
+        margin-bottom: 0px;
     }
+
+    .book-cover {
+        padding-top: 5px;
+        width: 50%;
+        object-fit: contain;
+    }
+}
+
+@media (max-width: 480px) {
+    .book-card {
+        width: 23%;
+        height: 90px;
+    }
+
+    .book-cover {
+        padding-top: 5px;
+    }
+}
+
 </style>
 
-    @include('components.nav')
+@include('components.nav')
 
 <div class="container">
     <h1>My Books Shelf</h1>

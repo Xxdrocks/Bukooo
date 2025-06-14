@@ -18,6 +18,7 @@
             },
             onClose: function(){
                 alert("Popup ditutup tanpa menyelesaikan pembayaran.");
+                window.location.href = "{{ route('products.index') }}";
             }
         });
     };

@@ -23,6 +23,7 @@
         }
 
         .container {
+            margin-top: -30px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -36,7 +37,7 @@
             font-size: 7px;
             text-align: center;
             align-items: center;
-            padding: 80px 20px;
+            padding: 10px;
             width: 280px;
             height: 250px;
             ;
@@ -85,9 +86,10 @@
         .favorite-book p {
             background-color: white;
             border-radius: 0 0 20px 0;
-            width: 30%;
+            width: 40%;
             margin-top: -20px;
-            padding-right: 5px;
+            margin-bottom: 10px;
+            padding-right: 10px;
             margin-left: -10px;
         }
 
@@ -125,8 +127,9 @@
             border-radius: 0px 0px 0px 20px;
             width: 30%;
             margin-top: -20px;
-            padding-left: 5px;
-            margin-left: 3px;
+            padding-left: 15px;
+            margin-left: -45px;
+            margin-bottom: 10px;
         }
 
         .wishlist-image {
@@ -138,9 +141,75 @@
 
         .wave {
             width: 100%;
-            margin-top: -120px;
+            margin-top: -100px;
             margin-left: -50px;
         }
+
+        @media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 20px;
+        height: auto;
+        margin-top: 30px;
+        padding: 20px;
+    }
+
+    .profile-card {
+        width: 90%;
+        height: auto;
+        font-size: 10px;
+    }
+
+    .profile-card a {
+        font-size: 12px;
+    }
+
+    .card {
+        font-size: 14px;
+        margin-bottom: 30px;
+    }
+
+   .right-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .favorite-book,
+    .wishlist {
+        width: 300px;
+        padding: 15px 10px;
+        box-sizing: border-box;
+    }
+
+    .favorite-image,
+    .wishlist-image {
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 10px;
+        height: 90px;
+    }
+
+    .favorite-image img,
+    .wishlist-image img {
+        height: 80px;
+        width: auto;
+        flex-shrink: 0;
+    }
+
+    .wishlist p{
+        margin-left: -80px;
+    }
+
+
+
+    .wave {
+        margin-top: 10px;
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
     </style>
 </head>
 

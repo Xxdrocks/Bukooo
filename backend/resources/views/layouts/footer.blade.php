@@ -23,7 +23,7 @@
         </div>
         <div class="footer-contact">
             <button class="call-btn">Request a call</button>
-            <p class="email">info@bukukosakasanku.com</p>
+            <p class="email">BukooInfo@gmail.com</p>
             <div class="rating">
                 <span class="badge">SU</span>
                 <span class="label">Score for all ages</span>

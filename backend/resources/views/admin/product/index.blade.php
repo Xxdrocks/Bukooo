@@ -125,6 +125,58 @@
         .delete-btn:hover {
             background-color: #c82333;
         }
+
+        @media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .main-content {
+        padding: 20px 15px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .header h1 {
+        font-size: 20px;
+    }
+
+    .btn-primary {
+        font-size: 13px;
+        padding: 8px 14px;
+    }
+
+    .table-container {
+        max-height: none;
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 600px;
+    }
+
+    th,
+    td {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+
+    td img {
+        width: 40px;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+}
+
     </style>
 </head>
 

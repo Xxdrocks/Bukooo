@@ -87,9 +87,9 @@
 
         .book-image {
             width: 100%;
-            max-height: 200px;
+            height: 250px;
             object-fit: contain;
-            margin-top: 50px;
+            padding-top: 50px;
             transition: 0.2s ease-in-out;
             border-radius: 5px;
             display: block;
@@ -142,14 +142,10 @@
 
         @media (max-width: 768px) {
             .atasan {
-                padding: 40px 20px;
-                height: auto;
-                padding: 0;
+                display: none;
             }
 
-            .atasan h2 {
-                font-size: 1.5rem;
-            }
+
 
             .product-grid {
                 grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));

@@ -53,6 +53,42 @@
         .empty-message {
             color: #777;
         }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            h1 {
+                margin-top: 40px;
+            }
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 10px;
+            }
+
+            .product-card {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border-radius: 10px;
+            }
+
+            .product-card img {
+                padding-top: 10px;
+                width: 100px;
+                height: auto;
+            }
+            .productcontent {
+                padding: 8px;
+            }
+            .book-title {
+                font-size: 14px;
+            }
+            .book-price {
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 <body>

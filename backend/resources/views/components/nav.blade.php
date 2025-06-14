@@ -134,14 +134,15 @@
             position: fixed;
             top: 0;
             right: -100%;
-            width: 280px;
-            height: 100vh;
+            width: 300px;
+            height: 250px;
             background-color: white;
             box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
-            padding: 80px 20px 20px;
+            padding: 50px 20px;
             z-index: 1000;
             transition: right 0.4s ease-in-out;
             overflow-y: auto;
+            border-radius: 20px;
         }
 
         .profile-sidebar.show {
@@ -165,8 +166,8 @@
         }
 
         .profile-sidebar h3 {
+
             font-size: 16px;
-            margin-bottom: 15px;
             padding: 0 15px;
         }
 
@@ -174,7 +175,6 @@
             display: block;
             width: 100%;
             padding: 10px 15px;
-            margin-top: 15px;
             font-weight: 600;
             text-decoration: none;
             border: none;
@@ -190,7 +190,7 @@
         }
 
         .addproduct a {
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
 
@@ -262,7 +262,11 @@
             .profile-sidebar {
                 width: 80%;
                 max-width: 300px;
+
+                z-index: 9999;
             }
+
+
         }
 
         @media (max-width: 480px) {
@@ -350,12 +354,12 @@
             </div>
         </div>
 
-        <!-- Overlay for mobile -->
+
         <div class="overlay" id="overlay"></div>
     </nav>
 
     <script>
-        // Hamburger menu toggle for center navigation
+
         const hamburger = document.getElementById('hamburger');
         const mobileCenterNav = document.getElementById('mobileCenterNav');
         const profileBtn = document.getElementById('profileBtn');
@@ -367,22 +371,18 @@
             mobileCenterNav.classList.toggle('show');
             overlay.classList.toggle('show');
 
-            // Close profile sidebar if open
             profileSidebar.classList.remove('show');
         });
 
-        // Profile sidebar toggle
         profileBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             profileSidebar.classList.toggle('show');
             overlay.classList.toggle('show');
 
-            // Close mobile center nav if open
             hamburger.classList.remove('active');
             mobileCenterNav.classList.remove('show');
         });
 
-        // Close all menus when clicking overlay
         overlay.addEventListener('click', () => {
             hamburger.classList.remove('active');
             mobileCenterNav.classList.remove('show');
@@ -390,7 +390,6 @@
             overlay.classList.remove('show');
         });
 
-        // Close mobile menu when clicking a link
         document.querySelectorAll('.mobile-center-nav a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
@@ -399,7 +398,6 @@
             });
         });
 
-        // Close profile sidebar when clicking a link inside it
         document.querySelectorAll('.profile-sidebar a, .profile-sidebar button').forEach(item => {
             item.addEventListener('click', () => {
                 profileSidebar.classList.remove('show');

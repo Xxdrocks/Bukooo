@@ -120,12 +120,63 @@
         .book-information strong {
             font-weight: bold;
         }
+
+        @media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .payment-details,
+    .book-information {
+        width: 100%;
+        padding: 20px;
+
+    }
+
+
+
+    .book-information {
+
+        order: 1;
+        margin-bottom: 20px;
+    }
+
+    .countdown {
+        font-size: 16px;
+    }
+
+    .pay-now-button {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .book-information img {
+        width: 30%;
+        height: auto;
+    }
+
+    .header h1 {
+        font-size: 20px;
+    }
+
+    .header img {
+        height: 40px;
+    }
+
+    .payment-method {
+        width: 60px;
+    }
+}
+
+
+
     </style>
 </head>
 
 <body>
 
-        @include('components.nav')
+    @include('components.nav')
 
 
     <form action="{{ route('payment.prosess') }}" method="POST">
@@ -169,6 +220,42 @@
     </form>
 
 
+
+    <script>
+        let minutes = 5;
+        let seconds = 0;
+
+        const countdownSpans = document.querySelectorAll('.countdown span');
+
+        function updateCountdownDisplay(mins, secs) {
+            const minStr = mins.toString().padStart(2, '0');
+            const secStr = secs.toString().padStart(2, '0');
+
+            countdownSpans[0].textContent = minStr[0];
+            countdownSpans[1].textContent = minStr[1];
+            countdownSpans[2].textContent = secStr[0];
+            countdownSpans[3].textContent = secStr[1];
+        }
+
+        updateCountdownDisplay(minutes, seconds);
+
+        const countdownInterval = setInterval(() => {
+            if (seconds === 0) {
+                if (minutes === 0) {
+                    clearInterval(countdownInterval);
+                    // Optional: redirect or show message here
+                    alert("Waktu pembayaran habis!");
+                    return;
+                }
+                minutes--;
+                seconds = 59;
+            } else {
+                seconds--;
+            }
+
+            updateCountdownDisplay(minutes, seconds);
+        }, 1000);
+    </script>
 
 
 

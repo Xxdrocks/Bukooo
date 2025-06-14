@@ -91,6 +91,8 @@
 
         @media (max-width: 768px) {
             .cards {
+                text-align: center;
+                align-items: center;
                 flex-direction: column;
             }
 
@@ -110,9 +112,7 @@
 </head>
 
 <body>
-    <div class="sidebar">
-        @include('components.admin-nav')
-    </div>
+      @include('components.admin-nav')
 
     <div class="main-content">
         <div class="header">
