@@ -679,7 +679,7 @@
             </a>
 
         </div>
-        <div class="wave-wrapper" data-aos="fade-up" data-aos-duration="1000" data-aos-offset="100">
+        <div class="wave-wrapper" >
             <img class="wave" src="{{ asset('assets/background/purplewave.png') }}" alt="">
             <img class="waves" src="{{ asset('assets/background/bigwave.png') }}" alt="">
         </div>

@@ -132,10 +132,10 @@
 
         .profile-sidebar {
             position: fixed;
-            top: 0;
+            top: 15%;
             right: -100%;
             width: 300px;
-            height: 250px;
+            height: auto;
             background-color: white;
             box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
             padding: 50px 20px;
